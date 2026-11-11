@@ -1,0 +1,138 @@
+{
+  "MT0.N1.HD/activations.csv": {
+    "bytes": 1670528,
+    "etag": "\"197d80-534beb5147280\"",
+    "last_modified": "Wed, 08 Jun 2016 06:49:30 GMT",
+    "sha256": "cd335c3029c6f26241f2100b5a80e77b669e01abaec5d78a2289a6d1b373fd0c",
+    "url": "https://srm.epfl.ch/srm/dataset/challenge-3D-simulation/MT0.N1.HD/sample/activations.csv"
+  },
+  "MT0.N1.HD/positions.csv": {
+    "bytes": 379001,
+    "etag": "\"5c879-534be9e9be240\"",
+    "last_modified": "Wed, 08 Jun 2016 06:43:13 GMT",
+    "sha256": "bf01a48ecb14be76d7e1cc052069e5780c616994833da114426531d44d7fce48",
+    "url": "https://srm.epfl.ch/srm/dataset/challenge-3D-simulation/MT0.N1.HD/sample/positions.csv"
+  },
+  "MT0.N1.HD/sequence-MT0.N1.HD-2D-Exp-as-stack.zip": {
+    "bytes": 14921627,
+    "etag": "\"e3af9b-534c0948a2580\"",
+    "last_modified": "Wed, 08 Jun 2016 09:03:34 GMT",
+    "sha256": "0b97f4ce28209ea1751650d155065500f38c77bdeee94015970e4489069b8d06",
+    "url": "https://srm.epfl.ch/srm/Data/challenge-3D-simulation/MT0.N1.HD/Data/sequence-MT0.N1.HD-2D-Exp-as-stack.zip",
+    "zip_member_bytes": [
+      20822904
+    ],
+    "zip_members": [
+      "sequence-as-stack-MT0.N1.HD-2D-Exp.tif"
+    ]
+  },
+  "MT0.N1.HD/stats_activation_sumary.csv": {
+    "bytes": 667,
+    "etag": "\"29b-534beb5700000\"",
+    "last_modified": "Wed, 08 Jun 2016 06:49:36 GMT",
+    "sha256": "b21dee77483614e6f28a2f3ee41afcd65836c95e584c14d18ebc355c68e94a9e",
+    "url": "https://srm.epfl.ch/srm/dataset/challenge-3D-simulation/MT0.N1.HD/sample/stats_activation_sumary.csv"
+  },
+  "MT0.N1.LD/activations.csv": {
+    "bytes": 1317983,
+    "etag": "\"141c5f-534c0040ed780\"",
+    "last_modified": "Wed, 08 Jun 2016 08:23:10 GMT",
+    "sha256": "eb631ab5417f3cbce588d4e2db070de38d26ac5d7068d4c423574db4e2ab0fc2",
+    "url": "https://srm.epfl.ch/srm/dataset/challenge-3D-simulation/MT0.N1.LD/sample/activations.csv"
+  },
+  "MT0.N1.LD/positions.csv": {
+    "bytes": 296172,
+    "etag": "\"484ec-534be4e618dc0\"",
+    "last_modified": "Wed, 08 Jun 2016 06:20:47 GMT",
+    "sha256": "931e300e4f5cee2660141a6db5c2d484b29e3ea0fc020f4609f7828d926485df",
+    "url": "https://srm.epfl.ch/srm/dataset/challenge-3D-simulation/MT0.N1.LD/sample/positions.csv"
+  },
+  "MT0.N1.LD/sequence-MT0.N1.LD-2D-Exp-as-stack.zip": {
+    "bytes": 114729551,
+    "etag": "\"6d6a24f-534c22369f680\"",
+    "last_modified": "Wed, 08 Jun 2016 10:55:06 GMT",
+    "sha256": "f2e478af19799cedf0cff747fb93923b6b752876aa00bb2a0283e7d080862b4a",
+    "url": "https://srm.epfl.ch/srm/Data/challenge-3D-simulation/MT0.N1.LD/Data/sequence-MT0.N1.LD-2D-Exp-as-stack.zip",
+    "zip_member_bytes": [
+      166584580
+    ],
+    "zip_members": [
+      "sequence-as-stack-MT0.N1.LD-2D-Exp.tif"
+    ]
+  },
+  "MT0.N1.LD/stats_activation_sumary.csv": {
+    "bytes": 665,
+    "etag": "\"299-534c0045b22c0\"",
+    "last_modified": "Wed, 08 Jun 2016 08:23:15 GMT",
+    "sha256": "9e8ef64764e6014f6a9b43d477c74df834d1eb1d0d68d6aec29bb267e0d2abeb",
+    "url": "https://srm.epfl.ch/srm/dataset/challenge-3D-simulation/MT0.N1.LD/sample/stats_activation_sumary.csv"
+  },
+  "MT0.N2.HD/activations.csv": {
+    "bytes": 1640924,
+    "etag": "\"1909dc-534c0bbb32bc0\"",
+    "last_modified": "Wed, 08 Jun 2016 09:14:31 GMT",
+    "sha256": "035bd15a12d8e0421504fd3e8c3230cfd0ede84924ff91ad35413a78b2be5056",
+    "url": "https://srm.epfl.ch/srm/dataset/challenge-3D-simulation/MT0.N2.HD/sample/activations.csv"
+  },
+  "MT0.N2.HD/positions.csv": {
+    "bytes": 379001,
+    "etag": "\"5c879-534be9e9be240\"",
+    "last_modified": "Wed, 08 Jun 2016 06:43:13 GMT",
+    "sha256": "bf01a48ecb14be76d7e1cc052069e5780c616994833da114426531d44d7fce48",
+    "url": "https://srm.epfl.ch/srm/dataset/challenge-3D-simulation/MT0.N2.HD/sample/positions.csv"
+  },
+  "MT0.N2.HD/sequence-MT0.N2.HD-2D-Exp-as-stack.zip": {
+    "bytes": 11851051,
+    "etag": "\"b4d52b-534c28eb3c880\"",
+    "last_modified": "Wed, 08 Jun 2016 11:25:06 GMT",
+    "sha256": "bebae60f119e17291f6349b3b72ac36846fc5174d3466aa274a669bdfd9c35f0",
+    "url": "https://srm.epfl.ch/srm/Data/challenge-3D-simulation/MT0.N2.HD/Data/sequence-MT0.N2.HD-2D-Exp-as-stack.zip",
+    "zip_member_bytes": [
+      20822903
+    ],
+    "zip_members": [
+      "sequence-as-stack-MT0.N2.HD-2D-Exp.tif"
+    ]
+  },
+  "MT0.N2.HD/stats_activation_sumary.csv": {
+    "bytes": 664,
+    "etag": "\"298-534c0bbf034c0\"",
+    "last_modified": "Wed, 08 Jun 2016 09:14:35 GMT",
+    "sha256": "ecc3749a36f2f0c7bd6e45f4bc8c6fa7a00b091e4c7302ce195f88b7504522f6",
+    "url": "https://srm.epfl.ch/srm/dataset/challenge-3D-simulation/MT0.N2.HD/sample/stats_activation_sumary.csv"
+  },
+  "MT0.N2.LD/activations.csv": {
+    "bytes": 1294643,
+    "etag": "\"13c133-534bf1ed18a00\"",
+    "last_modified": "Wed, 08 Jun 2016 07:19:04 GMT",
+    "sha256": "dffb04292a2f0119c6211f4f5529328131846a548856f5c00558951361ac2f78",
+    "url": "https://srm.epfl.ch/srm/dataset/challenge-3D-simulation/MT0.N2.LD/sample/activations.csv"
+  },
+  "MT0.N2.LD/positions.csv": {
+    "bytes": 296172,
+    "etag": "\"484ec-534be4e618dc0\"",
+    "last_modified": "Wed, 08 Jun 2016 06:20:47 GMT",
+    "sha256": "931e300e4f5cee2660141a6db5c2d484b29e3ea0fc020f4609f7828d926485df",
+    "url": "https://srm.epfl.ch/srm/dataset/challenge-3D-simulation/MT0.N2.LD/sample/positions.csv"
+  },
+  "MT0.N2.LD/sequence-MT0.N2.LD-2D-Exp-as-stack.zip": {
+    "bytes": 90625319,
+    "etag": "\"566d527-534d7e966e180\"",
+    "last_modified": "Thu, 09 Jun 2016 12:53:42 GMT",
+    "sha256": "0b0df60ddfdfee978c4b57bf1d6d27175a2980bf54a79eb5733d6f73c2b11d0e",
+    "url": "https://srm.epfl.ch/srm/Data/challenge-3D-simulation/MT0.N2.LD/Data/sequence-MT0.N2.LD-2D-Exp-as-stack.zip",
+    "zip_member_bytes": [
+      166584579
+    ],
+    "zip_members": [
+      "sequence-as-stack-MT0.N2.LD-2D-Exp.tif"
+    ]
+  },
+  "MT0.N2.LD/stats_activation_sumary.csv": {
+    "bytes": 662,
+    "etag": "\"296-534bf1f0e9300\"",
+    "last_modified": "Wed, 08 Jun 2016 07:19:08 GMT",
+    "sha256": "97e1a1bdafb959ce4f1bf8abecc3b471cdca6031792389a206e55e3958e8f400",
+    "url": "https://srm.epfl.ch/srm/dataset/challenge-3D-simulation/MT0.N2.LD/sample/stats_activation_sumary.csv"
+  }
+}

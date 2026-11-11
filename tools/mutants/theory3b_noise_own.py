@@ -1,0 +1,46 @@
+# (id, what, old, new, k): single-point mutants of experiments/theory3b_noise.py (the noise theorem for the limit object): the box constants with the noise, the block-shift bound Theta,
+# the rate errors, the entry-time recursion, the order check, the dual state errors, the windows, the oracle remainder, the gauges as suprema, the Gaussian bounds, the tangent Gram, the
+# orthogonalised family, and the report. Result: 36 mutants and a control (the control survives: all tests pass, the md regenerates). First run: 26 of 36 killed by the tests, 10 survivors
+# (M07, M08, M10, M12, M18, M21, M26, M34, M35 and the equivalent M33): the order check, the rate-error span, the nominal-rate term of the window, the box's s_max and the gauges' mesh chain
+# on e0 were only constrained through the module's own bisection; killed by an independent re-implementation of S in the tests (threshold equal to 1e-6, closed forms of the box, the gauges and the Gaussian
+# bounds) and by tests of the hypotheses S checks (r > d0, the blocks in D*, a nominal residual). Second and third runs: all killed except M33, which is EQUIVALENT (the white-noise family's overall
+# scale cancels, every quantity is relative to the vector's own certified scale; the md is unchanged). M36 is killed by the tests and the md. Run with --tests tests/test_theory3b_noise.py --raw results/synthetic/theory3b_raw.npz --md results/synthetic/theory3b.md --out-env T3B_OUT.
+M = [
+ ('M00', 'control', "def box_noise(B, K, R, Delta, r, e0, e1, e2):", "def box_noise(B, K, R, Delta, r, e0, e1, e2):", 0),
+ ('M01', 'Theta without the Hessian floor', "th = B.sqrt(sum((E0 * E0 + cc(vi) * cc(vi) * E1 * E1 for vi in vk), c(0))) / lam", "th = B.sqrt(sum((E0 * E0 + cc(vi) * cc(vi) * E1 * E1 for vi in vk), c(0)))", 0),
+ ('M02', 'Theta without the centre gauge', "th = B.sqrt(sum((E0 * E0 + cc(vi) * cc(vi) * E1 * E1 for vi in vk), c(0))) / lam", "th = B.sqrt(sum((E0 * E0 for vi in vk), c(0))) / lam", 0),
+ ('M03', 'rate error without the block correction', "ek.append(E0 + th * B.sqrt(s))", "ek.append(E0)", 0),
+ ('M04', 'rate error without the slope term', "s = s + gb * gb + cc(vk[i]) * cc(vk[i]) * pb * pb", "s = s + gb * gb", 0),
+ ('M05', 'entry-time denominator with a plus', "/ (ps0 - ej[j0])", "/ (ps0 + ej[j0])", 0),
+ ('M06', 'entry shift without the earlier shift', "e_new = (ebar[j0] + ej[j0] * Tk + (ps0 + ej[j0]) * eta[k])", "e_new = (ebar[j0] + ej[j0] * Tk)", 0),
+ ('M07', 'order check without the state error', "Mk = lo_ends + ebar[j] + ej[j] * span + (pj + ej[j]) * eta[k]", "Mk = lo_ends + ej[j] * span + (pj + ej[j]) * eta[k]", 0),
+ ('M08', 'order check at the next entry only', "lo_ends = B.mx(cc(abs(uk[j])) + pj * eta[k], cc(abs(uk1[j])) + pj * e_new)", "lo_ends = cc(abs(uk1[j]))", 0),
+ ('M09', 'state error without the rate-error term', "eb_new[j] = ebar[j] + ej[j] * Tk + (pj + ej[j]) * (eta[k] + e_new)", "eb_new[j] = ebar[j] + (pj + ej[j]) * (eta[k] + e_new)", 0),
+ ('M10', 'rate error over a shorter span', "span = B.mx(eta[k], Tk + e_new)", "span = B.mx(eta[k], Tk)", 0),
+ ('M11', 'window numerator without the state error', "num = c(1) - cc(abs(uK[j])) - ebar[j]", "num = c(1) - cc(abs(uK[j]))", 0),
+ ('M12', 'window denominator without the nominal rate', "Wj = num / (eps[K][j] + cc(abs(pK[j])))", "Wj = num / eps[K][j]", 0),
+ ('M13', 'refined window without the remainder', "Wjz = num / (c(ezv[j]) + rem + cc(abs(pK[j])))", "Wjz = num / (c(ezv[j]) + cc(abs(pK[j])))", 0),
+ ('M14', 'remainder without the Taylor term', "q = M2 * ThK * ThK / 2", "q = c(0)", 0),
+ ('M15', 'remainder with L_J = 1', "LJ = B.sqrt(c(0.5) + (c(1 / S2) + c(math.sqrt(3) / 2) * c(R)) * (c(1 / S2) + c(math.sqrt(3) / 2) * c(R)))", "LJ = c(1)", 0),
+ ('M16', 'box: vbar without e0', "vbar = (Rr * (1 + kap) + e0) / (1 - kap) * c(1 + 1e-9)", "vbar = (Rr * (1 + kap)) / (1 - kap) * c(1 + 1e-9)", 0),
+ ('M17', 'box: Ec without e1', "Ec = Kk * (Rr + vbar) * ps(ell) + e1", "Ec = Kk * (Rr + vbar) * ps(ell)", 0),
+ ('M18', 'box: s_max without e1', "s_max = Rr * ps(dstar) + e1", "s_max = Rr * ps(dstar)", 0),
+ ('M19', 'box: t_min without the second-derivative gauge', "- vbar * e2", "", 0),
+ ('M20', 'box: Ev without e0', "Ev = kap * (Rr + vbar) + e0", "Ev = kap * (Rr + vbar)", 0),
+ ('M21', 'gauges: no mesh correction on e0', "M0 = m[0] + mesh / 2 * M1", "M0 = m[0]", 0),
+ ('M22', 'gauges: no mesh correction on e2', "M2 = m[2] + mesh / 2 * M3", "M2 = m[2]", 0),
+ ('M23', 'gauges: dictionary excluded', "return max(M0, dct), M1, M2", "return M0, M1, M2", 0),
+ ('M24', 'Gaussian: t_j without sqrt(m_j)', "t = [st * math.sqrt(M_J[j]) * L for j in range(3)]", "t = [st * M_J[j] * L for j in range(3)]", 0),
+ ('M25', 'Gaussian: event count without the zeta events', "nev = 3 * K * (2 * M + 1) + d + (d if zeta_norms is not None else 0)", "nev = 3 * K * (2 * M + 1) + d", 0),
+ ('M26', 'Gaussian: no chain on e1', "E1 = t[1] + m / 2 * E2", "E1 = t[1]", 0),
+ ('M27', 'Gaussian: a smaller log', "L = math.sqrt(2.0 * math.log(4.0 * nev / p))", "L = math.sqrt(2.0 * math.log(nev / p))", 0),
+ ('M28', 'tangent Gram with a sign', "H[K + k, l] = a[k] * (-x / 2) * g", "H[K + k, l] = a[k] * (x / 2) * g", 0),
+ ('M29', 'zeta family without the projection', "Zeta = Phi - Jc @ np.linalg.lstsq(Jc, Phi, rcond=None)[0]", "Zeta = Phi", 0),
+ ('M30', 'psi-bar without the interior maximum', "if B.lo(hi) >= S2 and B.up(lo) <= S2:", "if False:", 0),
+ ('M31', 'ratios: entry-time shifts misaligned', "eta = np.array(S['eta'][1:])", "eta = np.array(S['eta'][:-1])", 0),
+ ('M32', 'noiseless path: the entrant assigned to the farthest feature', "f_as = free[int(np.argmin(np.abs(cs[free] - c0[j])))]", "f_as = free[int(np.argmax(np.abs(cs[free] - c0[j])))]", 0),
+ ('M33', 'white-noise family scaled', "return rng.standard_normal(N)", "return 2.0 * rng.standard_normal(N)", 0),
+ ('M34', 'box radius needs no margin over d0', "if not (min(P['d0']) >= 0 and rr > c(max(P['d0']))):", "if not (min(P['d0']) >= 0):", 0),
+ ('M35', 'D* membership of the noiseless blocks not checked', "if not (cc(dd) < dstar and cc(vv) > bx['vlod'] and cc(vv) < c(R) + bx['Ev']):", "if False:", 0),
+ ('M36', 'report: the violation count', "int(V[:, 21].sum())))", "int(V[:, 21].sum()) + 1))", 0),
+]

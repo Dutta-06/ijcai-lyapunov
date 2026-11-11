@@ -1,0 +1,25 @@
+# (id, what, old, new, k): single-point mutants of exp_noise_resonance.py — round 98's new code (c7s_overlap's anchored far pairs and the
+# zero-raise guard, C8R by sample, the C8D wording, offsets_start's only, c8a_job, c8a_cases, c8a_lines).
+M = [
+ ('X00', 'control', 'C8R_BACK = (20, 40, 80) ', 'C8R_BACK = (20, 40, 80) ', 0),
+ ('S01', 'anchored: |Δ| ≥ 15', "or ka[:5] != k_[:5] or abs(ka[5] - k_[5]) < 25:", "or ka[:5] != k_[:5] or abs(ka[5] - k_[5]) < 15:", 0),
+ ('S02', 'anchored: across draws', "or ka[:5] != k_[:5] or abs(ka[5] - k_[5]) < 25:", "or ka[:4] != k_[:4] or abs(ka[5] - k_[5]) < 25:", 0),
+ ('S03', 'anchored: one side only', "or ka[:5] != k_[:5] or abs(ka[5] - k_[5]) < 25:", "or ka[:5] != k_[:5] or ka[5] - k_[5] < 25:", 0),
+ ('S04', 'anchored: the noise-free kept', "if 'freqs' in a['opts'] or a['s'] == 0 or ka[:5] != k_[:5]", "if 'freqs' in a['opts'] or ka[:5] != k_[:5]", 0),
+ ('S05', 'ratio: a zero least raise divided', "or min(least(a), least(b)) == 0 else", "else", 0),
+ ('S06', 'lr0 not counted', "                    lr0 += 1\n", "                    pass\n", 0),
+ ('S07', 'the guard truthy again', "if least(b) is not None and least(q) is not None:", "if least(b) and least(q):", 0),
+ ('S08', 'C8R: in sample by seed 1', "ins = lambda r: r.get('opts', {}).get('seed', 7) == 7", "ins = lambda r: r.get('opts', {}).get('seed', 7) == 1", 0),
+ ('S09', 'C8R: ok within two periods', "ok_ = lambda r, y: y['left'] >= 0 and abs(y['left'] - r['left']) <= 1", "ok_ = lambda r, y: y['left'] >= 0 and abs(y['left'] - r['left']) <= 2", 0),
+ ('S10', 'C8D: the implied clause always', "referee round 98)\" if cov else ''))", "referee round 98)\"))", 0),
+ ('S11', 'byc: the metric dropped', "{'' if c[2] == 'paradigm' else ', ' + c[2]}, s = {c[3]:g}: {n}\"", "s = {c[3]:g}: {n}\"", 0),
+ ('S12', 'offsets_start: only ignored', "            if only is not None and k not in only:\n                continue\n", "", 0),
+ ('S13', 'c8a_job: wc without the centres', "for tag, cen in (('w', False), ('wc', True)):\n            row[tag]", "for tag, cen in (('w', False), ('wc', False)):\n            row[tag]", 0),
+ ('S14', 'c8a_job: the probe with centres', "start=offsets_start(W, C, pp, False, sub))))", "start=offsets_start(W, C, pp, True, sub))))", 0),
+ ('S15', 'c8a_job: the rerun leave of kernel 2', "left = left_periods(np.abs(Cp - CT.CSTAR), LEFT_C)[0]", "left = left_periods(np.abs(Cp - CT.CSTAR), LEFT_C)[1]", 0),
+ ('S16', 'c8a_cases: C3 not used', "WC = None if q is None else", "WC = None if True else", 0),
+ ('S17', 'c8a_cases: early alarms too', "iso = [z for z in c8d_alarms(C8, C8D, C8R)['alarms'] if z['kind'] == 'isolated']", "iso = [z for z in c8d_alarms(C8, C8D, C8R)['alarms']]", 0),
+ ('S18', 'c8a_lines: kept as ≥', "('kept' if lp == red else ('delayed' if lp > red else 'earlier'))", "('kept' if lp >= red else 'earlier')", 0),
+ ('S19', 'c8a_lines: the reruns compared to kernel 2', "if base.get((r['m'], r['ke'], r['metric'], r['s'], r['opts'].get('seed', 7))) == r['left'])", "if base.get((r['m'], r['ke'], r['metric'], r['s'], r['opts'].get('seed', 7))) != r['left'])", 0),
+ ('S20', 'C8A_PROBE window', "C8A_PROBE = (0.03, 5, 150, ", "C8A_PROBE = (0.03, 5, 140, ", 0),
+]

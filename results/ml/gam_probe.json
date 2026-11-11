@@ -1,0 +1,146 @@
+{
+ "Bike_Sharing_Demand": {
+  "d_enc": 18,
+  "kind": "reg",
+  "n": 17379,
+  "ok": true
+ },
+ "MagicTelescope": {
+  "d_enc": 10,
+  "kind": "clf",
+  "n": 19020,
+  "ok": true
+ },
+ "abalone": {
+  "d_enc": 10,
+  "kind": "reg",
+  "n": 4177,
+  "ok": true
+ },
+ "adult": {
+  "d_enc": 33,
+  "kind": "clf",
+  "n": 48842,
+  "ok": true
+ },
+ "airfoil_self_noise": {
+  "d_enc": 5,
+  "kind": "reg",
+  "n": 1503,
+  "ok": true
+ },
+ "bank-marketing": {
+  "d_enc": 24,
+  "kind": "clf",
+  "n": 45211,
+  "ok": true
+ },
+ "california_housing": {
+  "d_enc": 13,
+  "kind": "reg",
+  "n": 20640,
+  "ok": true
+ },
+ "churn": {
+  "d_enc": 31,
+  "kind": "clf",
+  "n": 5000,
+  "ok": true
+ },
+ "concrete_compressive_strength": {
+  "d_enc": 8,
+  "kind": "reg",
+  "n": 1030,
+  "ok": true
+ },
+ "cpu_act": {
+  "d_enc": 21,
+  "kind": "reg",
+  "n": 8192,
+  "ok": true
+ },
+ "credit-g": {
+  "d_enc": 59,
+  "kind": "clf",
+  "n": 1000,
+  "ok": true
+ },
+ "default-of-credit-card-clients": {
+  "d_enc": 23,
+  "kind": "clf",
+  "n": 30000,
+  "ok": true
+ },
+ "diamonds": {
+  "d_enc": 26,
+  "kind": "reg",
+  "n": 53940,
+  "ok": true
+ },
+ "eeg-eye-state": {
+  "d_enc": 14,
+  "kind": "clf",
+  "n": 14980,
+  "ok": true
+ },
+ "electricity": {
+  "d_enc": 14,
+  "kind": "clf",
+  "n": 45312,
+  "ok": true
+ },
+ "elevators": {
+  "d_enc": 18,
+  "kind": "reg",
+  "n": 16599,
+  "ok": true
+ },
+ "higgs": {
+  "d_enc": 28,
+  "kind": "clf",
+  "n": 98050,
+  "ok": true
+ },
+ "house_sales": {
+  "d_enc": 17,
+  "kind": "reg",
+  "n": 21613,
+  "ok": true
+ },
+ "kc1": {
+  "d_enc": 21,
+  "kind": "clf",
+  "n": 2109,
+  "ok": true
+ },
+ "kin8nm": {
+  "d_enc": 8,
+  "kind": "reg",
+  "n": 8192,
+  "ok": true
+ },
+ "phoneme": {
+  "d_enc": 5,
+  "kind": "clf",
+  "n": 5404,
+  "ok": true
+ },
+ "pol": {
+  "d_enc": 26,
+  "kind": "reg",
+  "n": 15000,
+  "ok": true
+ },
+ "spambase": {
+  "d_enc": 57,
+  "kind": "clf",
+  "n": 4601,
+  "ok": true
+ },
+ "wine_quality": {
+  "d_enc": 11,
+  "kind": "reg",
+  "n": 6497,
+  "ok": true
+ }
+}

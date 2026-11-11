@@ -1,0 +1,6 @@
+# Star-field windows (mechreal)
+
+The 36 test windows and 8 development windows of `experiments/exp_mechreal.py` are stored inside `results/astro/mechreal_raw.npz` under keys `W|<window>|{meta,label,y,sw,parts,src_c,src_z,truth_c}` (pixels `y`, per-pixel weights `sw`, PSF/meta vector, source positions and fluxes `src_c`/`src_z`, HST-truth positions `truth_c`). The window names are listed under `names|dev` / `names|test`; the selection log and its UTC time under `select|<stage>|log` and `select|<stage>|utc`. Stored per-arm snapshots are the `P|...` keys.
+
+They are small derived cut-outs (20 x 20 px, 3 px high-pass, flux-limit scaled) of public SDSS images with public HST (HUGS) truth catalogs. If you prefer to regenerate them: the fetch scripts and checksums are `data/astro/fetch*.py`, `data/astro/checksums*.json`, `data/astro/make_truth.py`; the extraction and preprocessing code is `experiments/mechreal_core.py` and `experiments/astro_common.py`; the selection rule (2 to 12 counted truth sources, brightest <= 50 flux limits, seeded permutation, `select_windows('test')`) is in `mechreal_core.py` and is deterministic (an independent referee reproduced the same 36 names).
+Raw SDSS/HST files themselves are not in this repository.

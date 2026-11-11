@@ -1,0 +1,236 @@
+{
+  "Bundled_Tubes_High_Density/fluorophores.zip": {
+    "bytes": 3817424,
+    "etag": "\"3a3fd0-5bc144b955940\"",
+    "last_modified": "Wed, 24 Feb 2021 12:37:17 GMT",
+    "sha256": "d57316fb663c543c4e9b9baf1152a82912e634ce5949cb59a9f2cfb0db6ecad3",
+    "url": "https://srm.epfl.ch/srm/Data/challenge-2D-simulation/Bundled_Tubes_High_Density/Data/fluorophores.zip",
+    "zip_member_bytes_total": 9016129,
+    "zip_members": [
+      "fluorophores/",
+      "fluorophores/activation.csv",
+      "fluorophores/frames/",
+      "..."
+    ],
+    "zip_n_members": 371
+  },
+  "Bundled_Tubes_High_Density/oracle.zip": {
+    "bytes": 4217912,
+    "etag": "\"405c38-5bc144b955940\"",
+    "last_modified": "Wed, 24 Feb 2021 12:37:17 GMT",
+    "sha256": "0b74ebef946c375cc61db9f1b45ae1a996e45bef1293c774264c2818b554f7d3",
+    "url": "https://srm.epfl.ch/srm/Data/challenge-2D-simulation/Bundled_Tubes_High_Density/Data/oracle.zip",
+    "zip_member_bytes_total": 6704356,
+    "zip_members": [
+      "oracle/",
+      "oracle/projection-avg-camera-resolution.jpg",
+      "oracle/projection-avg-camera-resolution.tif",
+      "..."
+    ],
+    "zip_n_members": 9
+  },
+  "Bundled_Tubes_High_Density/psf.zip": {
+    "bytes": 4307112,
+    "etag": "\"41b8a8-5bc144ba49b80\"",
+    "last_modified": "Wed, 24 Feb 2021 12:37:18 GMT",
+    "sha256": "60c3a97a6d797d4ccd84842ec3262c3a7c15a28532e3d6f1052ad3377b00bad5",
+    "url": "https://srm.epfl.ch/srm/Data/challenge-2D-simulation/Bundled_Tubes_High_Density/Data/psf.zip",
+    "zip_member_bytes_total": 8581680,
+    "zip_members": [
+      "psf/",
+      "psf/illustration.png",
+      "psf/psf-10.0nm.tif"
+    ],
+    "zip_n_members": 3
+  },
+  "Bundled_Tubes_High_Density/sequence.zip": {
+    "bytes": 2077674,
+    "etag": "\"1fb3ea-5bc144ba49b80\"",
+    "last_modified": "Wed, 24 Feb 2021 12:37:18 GMT",
+    "sha256": "d6e303f685a9171d1db858fd3674b09db62d162bca842746e2a0c722d187a719",
+    "url": "https://srm.epfl.ch/srm/Data/challenge-2D-simulation/Bundled_Tubes_High_Density/Data/sequence.zip",
+    "zip_member_bytes_total": 3018003,
+    "zip_members": [
+      "sequence/",
+      "sequence/00001.tif",
+      "sequence/00002.tif",
+      "..."
+    ],
+    "zip_n_members": 362
+  },
+  "Bundled_Tubes_Long_Sequence/fluorophores.zip": {
+    "bytes": 6923245,
+    "etag": "\"69a3ed-60722f57a9d40\"",
+    "last_modified": "Sat, 07 Oct 2023 16:36:29 GMT",
+    "sha256": "337a136ee5434495b8a0dc70f12c33023efa01a0948ce89e42430c3ea1274ac9",
+    "url": "https://srm.epfl.ch/srm/Data/challenge-2D-simulation/Bundled_Tubes_Long_Sequence/Data/fluorophores.zip",
+    "zip_member_bytes_total": 9655333,
+    "zip_members": [
+      "fluorophores/",
+      "fluorophores/activation.csv",
+      "fluorophores/frames/",
+      "..."
+    ],
+    "zip_n_members": 12010
+  },
+  "Bundled_Tubes_Long_Sequence/oracle.zip": {
+    "bytes": 4218346,
+    "etag": "\"405dea-60722f57a9d40\"",
+    "last_modified": "Sat, 07 Oct 2023 16:36:29 GMT",
+    "sha256": "a4ae58dfd4af913e8b320ee8ab52f3beb74f9c076d3b70fe0343cb196bbb617a",
+    "url": "https://srm.epfl.ch/srm/Data/challenge-2D-simulation/Bundled_Tubes_Long_Sequence/Data/oracle.zip",
+    "zip_member_bytes_total": 6702336,
+    "zip_members": [
+      "oracle/",
+      "oracle/projection-avg-camera-resolution.jpg",
+      "oracle/projection-avg-camera-resolution.tif",
+      "..."
+    ],
+    "zip_n_members": 9
+  },
+  "Bundled_Tubes_Long_Sequence/psf.zip": {
+    "bytes": 4307112,
+    "etag": "\"41b8a8-60722f57a9d40\"",
+    "last_modified": "Sat, 07 Oct 2023 16:36:29 GMT",
+    "sha256": "cba2c63ba2d6ca18e64e78cca479d8e7a81bcb6cfadcaa0ea6b5837be8c996e6",
+    "url": "https://srm.epfl.ch/srm/Data/challenge-2D-simulation/Bundled_Tubes_Long_Sequence/Data/psf.zip",
+    "zip_member_bytes_total": 8581680,
+    "zip_members": [
+      "psf/",
+      "psf/illustration.png",
+      "psf/psf-10.0nm.tif"
+    ],
+    "zip_n_members": 3
+  },
+  "Bundled_Tubes_Long_Sequence/sequence.zip": {
+    "bytes": 55752091,
+    "etag": "\"352b59b-60722f57a9d40\"",
+    "last_modified": "Sat, 07 Oct 2023 16:36:29 GMT",
+    "sha256": "0c70f0ab2cc73cec7d5ddee80009cd48b2a2e2cec4a223120bc3f0323dd37270",
+    "url": "https://srm.epfl.ch/srm/Data/challenge-2D-simulation/Bundled_Tubes_Long_Sequence/Data/sequence.zip",
+    "zip_member_bytes_total": 100308026,
+    "zip_members": [
+      "sequence/",
+      "sequence/00001.tif",
+      "sequence/00002.tif",
+      "..."
+    ],
+    "zip_n_members": 12001
+  },
+  "Tubulins_I/fluorophores.zip": {
+    "bytes": 5513600,
+    "etag": "\"542180-607232d2652c0\"",
+    "last_modified": "Sat, 07 Oct 2023 16:52:03 GMT",
+    "sha256": "e36413ece92c768ac6c335df73bf750fe8911cfd936d1817e5598e99b16497f2",
+    "url": "https://srm.epfl.ch/srm/Data/challenge-2D-simulation/Tubulins_I/Data/fluorophores.zip",
+    "zip_member_bytes_total": 11945204,
+    "zip_members": [
+      "activation.csv",
+      "frames/",
+      "frames/00001.csv",
+      "..."
+    ],
+    "zip_n_members": 2404
+  },
+  "Tubulins_I/oracle.zip": {
+    "bytes": 38077701,
+    "etag": "\"2450505-607232d359500\"",
+    "last_modified": "Sat, 07 Oct 2023 16:52:04 GMT",
+    "sha256": "a95d6c236ddbbb86eab0f850bc14e641d4c552773c4fde3ce789233e445365d2",
+    "url": "https://srm.epfl.ch/srm/Data/challenge-2D-simulation/Tubulins_I/Data/oracle.zip",
+    "zip_member_bytes_total": 237991525,
+    "zip_members": [
+      "projection-avg-camera-resolution.jpg",
+      "projection-avg-camera-resolution.tif",
+      "projection-avg-high-resolution.jpg",
+      "..."
+    ],
+    "zip_n_members": 8
+  },
+  "Tubulins_I/psf.zip": {
+    "bytes": 1190682,
+    "etag": "\"122b1a-607232d359500\"",
+    "last_modified": "Sat, 07 Oct 2023 16:52:04 GMT",
+    "sha256": "7c5459885192fd7f0b0068304679db6defae0d7ee286943d59f4ea437fc50289",
+    "url": "https://srm.epfl.ch/srm/Data/challenge-2D-simulation/Tubulins_I/Data/psf.zip",
+    "zip_member_bytes_total": 5150015,
+    "zip_members": [
+      "illustration.png",
+      "psf-10.0nm.tif"
+    ],
+    "zip_n_members": 2
+  },
+  "Tubulins_I/sequence.zip": {
+    "bytes": 190604305,
+    "etag": "\"b5c6411-607232d729e00\"",
+    "last_modified": "Sat, 07 Oct 2023 16:52:08 GMT",
+    "sha256": "f28399b0ca2633befa8c798da7eeeb8f22a55cbb7b6849c86f4fa83d29a4aefa",
+    "url": "https://srm.epfl.ch/srm/Data/challenge-2D-simulation/Tubulins_I/Data/sequence.zip",
+    "zip_member_bytes_total": 315105709,
+    "zip_members": [
+      "00001.tif",
+      "00002.tif",
+      "00003.tif",
+      "..."
+    ],
+    "zip_n_members": 2401
+  },
+  "Tubulins_II/fluorophores.zip": {
+    "bytes": 5513600,
+    "etag": "\"542180-6072341d51f80\"",
+    "last_modified": "Sat, 07 Oct 2023 16:57:50 GMT",
+    "sha256": "076f4503f67be9808bf81fb47e5e3a5822fe560d0d9a7a4db9e6e9e633e2c205",
+    "url": "https://srm.epfl.ch/srm/Data/challenge-2D-simulation/Tubulins_II/Data/fluorophores.zip",
+    "zip_member_bytes_total": 11945204,
+    "zip_members": [
+      "activation.csv",
+      "frames/",
+      "frames/00001.csv",
+      "..."
+    ],
+    "zip_n_members": 2404
+  },
+  "Tubulins_II/oracle.zip": {
+    "bytes": 40777930,
+    "etag": "\"26e38ca-6072341e461c0\"",
+    "last_modified": "Sat, 07 Oct 2023 16:57:51 GMT",
+    "sha256": "d1dc1b949655cb3ba9f3bd22553469355eb9b1f398b88c0327ddad6d3f7ef15d",
+    "url": "https://srm.epfl.ch/srm/Data/challenge-2D-simulation/Tubulins_II/Data/oracle.zip",
+    "zip_member_bytes_total": 240756555,
+    "zip_members": [
+      "projection-avg-camera-resolution.jpg",
+      "projection-avg-camera-resolution.tif",
+      "projection-avg-high-resolution.jpg",
+      "..."
+    ],
+    "zip_n_members": 8
+  },
+  "Tubulins_II/psf.zip": {
+    "bytes": 1190682,
+    "etag": "\"122b1a-6072341e461c0\"",
+    "last_modified": "Sat, 07 Oct 2023 16:57:51 GMT",
+    "sha256": "1f39ea452c027e8e41bd3fba36e1aee346b1365c6af98e28cc3d21d2d171af77",
+    "url": "https://srm.epfl.ch/srm/Data/challenge-2D-simulation/Tubulins_II/Data/psf.zip",
+    "zip_member_bytes_total": 5150015,
+    "zip_members": [
+      "illustration.png",
+      "psf-10.0nm.tif"
+    ],
+    "zip_n_members": 2
+  },
+  "Tubulins_II/sequence.zip": {
+    "bytes": 202735580,
+    "etag": "\"c157fdc-6072342216ac0\"",
+    "last_modified": "Sat, 07 Oct 2023 16:57:55 GMT",
+    "sha256": "fee538c03dedcb6124d91e369ef360f143e4701079d15490bb51a8108f84a4d2",
+    "url": "https://srm.epfl.ch/srm/Data/challenge-2D-simulation/Tubulins_II/Data/sequence.zip",
+    "zip_member_bytes_total": 315103668,
+    "zip_members": [
+      "00001.tif",
+      "00002.tif",
+      "00003.tif",
+      "..."
+    ],
+    "zip_n_members": 2401
+  }
+}

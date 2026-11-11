@@ -1,0 +1,78 @@
+{
+ "format": 1,
+ "source": "experiments/exp_gh_peano.py --export-cert: dom_bb(1.8927, ball=True) and part VA011 (experiments/gh_lastann.py), recomputed and checked equal to results/chaos/gh_peano_raw.npz",
+ "floats": "every float is a Python float.hex string (exact binary64), except in D_leaves (raw binary64)",
+ "D": {
+  "file": "D_leaves.f64le.gz",
+  "R1": "0x1.0000000000000p+0",
+  "R2": "0x1.e487fcb923a2ap+0",
+  "f1": "0x0.0p+0",
+  "f2": "0x1.921fb54442d18p+0",
+  "leaves": 402664,
+  "prec": 120,
+  "columns": [
+   "R1",
+   "R2",
+   "f1",
+   "f2",
+   "H (the proposer's rigorous bound, informational)"
+  ],
+  "layout": "gzip of leaves x 5 little-endian IEEE-754 binary64, row-major, in the order accepted",
+  "proposer_worst": "-0x1.55da0749f3428p-36"
+ },
+ "VA011": {
+  "files": [
+   "VA011_inner.jsonl.gz",
+   "VA011_outer.jsonl.gz"
+  ],
+  "eps0": "0x1.c28f5c28f5c29p-4",
+  "delta0": "0x1.999999999999ap-5",
+  "end_r": "0x1.47ae147ae147bp-6",
+  "QA": "0x1.4000000000000p+1",
+  "PB": "0x1.0000000000000p-1",
+  "UJ": "0x1.0000000000000p+2",
+  "R1": "0x1.e3d70a3d70a3dp+0",
+  "R2": "0x1.0000000000000p+1",
+  "prec": 128,
+  "tail_floor": "0x1.56e1fc2f8f359p-997",
+  "terms": {
+   "S": 16,
+   "Cv": 16,
+   "Lam": 30,
+   "H1": 26
+  },
+  "pieces": {
+   "A-J": {
+    "boxes": 54,
+    "skipped": 0,
+    "proposer_worst": "-0x1.09b794dac2408p-4"
+   },
+   "A-FC": {
+    "boxes": 2533,
+    "skipped": 0,
+    "proposer_worst": "-0x1.8b76ea72af8e3p-44"
+   },
+   "B-J": {
+    "boxes": 413,
+    "skipped": 549,
+    "proposer_worst": "-0x1.e97ac703cb45ep-12"
+   },
+   "B-F": {
+    "boxes": 1189,
+    "skipped": 1174,
+    "proposer_worst": "-0x1.bf0e0f99bad83p-15"
+   }
+  },
+  "outer": {
+   "boxes": 220,
+   "segments": 16083,
+   "proposer_worst": "-0x1.228b73febf54ap-28"
+  },
+  "handoff_sub_boxes": 1306,
+  "end": {
+   "R2": "0x1.0000000000000p+1",
+   "eps_e": "0x1.47ae147ae147bp-6",
+   "proposer_bound": "-0x1.54d8235974b6fp+0"
+  }
+ }
+}

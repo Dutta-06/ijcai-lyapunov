@@ -1,0 +1,20 @@
+# (id, what, old, new, k): single-point mutants of exp_moving_width.py — round 116's revision (the long-double exit on the stored data,
+# Λ at the exit and the linear response, the symmetric samples' Λ against 11 ln 2, the arithmetic's flip, the seeded run's resolution,
+# the double runs' largest deviation, the mirror margin over min A and the narrowest formed kernel).
+M = [
+ ('W00', 'control', "def a2_sym_lag(ratio, wmul, rtol, n=4001):", "def a2_sym_lag(ratio, wmul, rtol, n=4001):", 0),
+ ('W01', 'f* re-evaluated in long double', "    f = (A_A * np.exp(-(xs - c0) ** 2 / (2 * ss * ss))).astype(LD)", "    f = LD(A_A) * np.exp(-K.xr ** 2 / (2 * LD(ss) ** 2))", 0),
+ ('W02', 'Λ at s = 0 returned', "off=S / ss), float(Lam[-1])", "off=S / ss), float(Lam[0])", 0),
+ ('W03', "the symmetric Λ from s = 0", "    ts = np.linspace(td, ex[0], n)", "    ts = np.linspace(0.0, ex[0], n)", 0),
+ ('W04', "the seeded run's resolution at 10⁻³", "if rel(r['ld']['symS'], r['ld']['a'][1]) < 3e-5 else", "if rel(r['ld']['symS'], r['ld']['a'][1]) < 1e-3 else", 0),
+ ('W05', "the arithmetic's flip dropped", "                          if any(flipa(r) for r in ex.values()) else '')", "                          if False else '')", 0),
+ ('W06', "the arithmetic's flip at one tolerance", "r['sym'][i][1] != r['ld']['sym'][i][1] for i in (0, 1))", "r['sym'][i][1] != r['ld']['sym'][i][1] for i in (1,))", 0),
+ ('W07', 'Λ printed with a run missing', "\"later\" + ('' if len(lags) != 2 * len(ex) else", "\"later\" + ('' if not lags else", 0),
+ ('W08', "the largest deviation rounded to nearest", "{math.ceil(dev * 1000 - 1e-9) / 10:.1f}%", "{round(dev * 1000) / 10:.1f}%", 0),
+ ('W09', 'the narrowest formed over all wide kernels', "f\", the narrowest of them {np.abs(th_[wd & fm, 1]).min():.3g}\"", "f\", the narrowest of them {np.abs(th_[wd, 1]).min():.3g}\"", 0),
+ ('W10', 'the margin over max A twice', "{np.abs(w_[ac & ~fm]).max() / min(abs(a) for a in r['As']):.2g}, \"", "{np.abs(w_[ac & ~fm]).max() / Am:.2g}, \"", 0),
+ ('W11', "the long-double exits' direction unchecked (X10)", "t[1] < 0 for t in A_(r) + r['ld']['a'])", "t[1] < 0 for t in A_(r))", 0),
+ ('W12', "the symmetric Λ's double exit at rtol 10⁻¹⁰", "    td = a2_exit(ratio, wmul, sym=True, rtol=rtol, signed=True)[0]", "    td = a2_exit(ratio, wmul, sym=True, rtol=1e-10, signed=True)[0]", 0),
+ ('W13', 'S over σ₀ instead of σ*', "{r['ld']['seed'] / r['ld'].get('ss', S0 / 4):.2e}σ*)", "{r['ld']['seed'] / S0:.2e}σ*)", 0),
+ ('W14', "the linear response against σ₀'s level", "/ (0.01 * r['ld'].get('ss', S0 / 4)):.3f}", "/ (0.01 * S0):.3f}", 0),
+]

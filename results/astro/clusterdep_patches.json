@@ -1,0 +1,259 @@
+{
+ "clusters": {
+  "ngc5466": {
+   "camcol": 1,
+   "date_obs": "2004-05-12",
+   "densities": [
+    0.0325
+   ],
+   "field": 324,
+   "fwhm_px": [
+    3.4506
+   ],
+   "nstar": 28,
+   "patches": [
+    [
+     1030,
+     800
+    ]
+   ],
+   "patches_built": [
+    [
+     1030,
+     800
+    ]
+   ],
+   "prefix": "patch_r_004623_1_0324",
+   "root": "/home/user/astro_data_4",
+   "run": 4623,
+   "shifts": [
+    [
+     0.0643,
+     0.3519
+    ]
+   ],
+   "status": 0,
+   "title": "NGC 5466, SDSS run 4623 camcol 1 field 324",
+   "truth": "truth_hugs_ngc5466_meth1.npz",
+   "windows": 71
+  },
+  "ngc5904": {
+   "camcol": 4,
+   "date_obs": "2000-05-04",
+   "densities": [
+    0.0981,
+    0.1304
+   ],
+   "field": 700,
+   "fwhm_px": [
+    2.5113,
+    2.4591
+   ],
+   "nstar": 0,
+   "patches": [
+    [
+     640,
+     240
+    ],
+    [
+     820,
+     640
+    ]
+   ],
+   "patches_built": [
+    [
+     640,
+     240
+    ],
+    [
+     820,
+     640
+    ]
+   ],
+   "prefix": "patch_r_001458_4_0700",
+   "root": "/home/user/astro_data_4",
+   "run": 1458,
+   "shifts": [
+    [
+     -0.4434,
+     0.1274
+    ],
+    [
+     0.1014,
+     0.2122
+    ]
+   ],
+   "status": 3,
+   "title": "M5 (NGC 5904), SDSS run 1458 camcol 4 field 700",
+   "truth": "truth_hugs_ngc5904_meth1.npz",
+   "windows": 581
+  },
+  "ngc6254": {
+   "camcol": 5,
+   "date_obs": "2005-06-06",
+   "densities": [
+    0.1242
+   ],
+   "field": 185,
+   "fwhm_px": [
+    2.8098
+   ],
+   "nstar": 5,
+   "patches": [
+    [
+     1900,
+     80
+    ]
+   ],
+   "patches_built": [
+    [
+     1900,
+     80
+    ]
+   ],
+   "prefix": "patch_r_005391_5_0185",
+   "root": "/home/user/astro_data_4",
+   "run": 5391,
+   "shifts": [
+    [
+     1.0873,
+     0.1189
+    ]
+   ],
+   "status": 2,
+   "title": "M10 (NGC 6254), SDSS run 5391 camcol 5 field 185",
+   "truth": "truth_hugs_ngc6254_meth1.npz",
+   "windows": 286
+  },
+  "ngc6535": {
+   "camcol": 3,
+   "date_obs": "2002-05-03",
+   "densities": [
+    0.0395
+   ],
+   "field": 49,
+   "fwhm_px": [
+    3.5228
+   ],
+   "nstar": 0,
+   "patches": [
+    [
+     150,
+     1240
+    ]
+   ],
+   "patches_built": [
+    [
+     150,
+     1240
+    ]
+   ],
+   "prefix": "patch_r_003170_3_0049",
+   "root": "/home/user/astro_data_4",
+   "run": 3170,
+   "shifts": [
+    [
+     0.1111,
+     0.2324
+    ]
+   ],
+   "status": 3,
+   "title": "NGC 6535, SDSS run 3170 camcol 3 field 49",
+   "truth": "truth_hugs_ngc6535_meth1.npz",
+   "windows": 90
+  },
+  "ngc6838": {
+   "camcol": 3,
+   "date_obs": "2007-08-17",
+   "densities": [
+    0.0346
+   ],
+   "field": 52,
+   "fwhm_px": [
+    2.8973
+   ],
+   "nstar": 0,
+   "patches": [
+    [
+     1880,
+     1120
+    ]
+   ],
+   "patches_built": [
+    [
+     1880,
+     1120
+    ]
+   ],
+   "prefix": "patch_r_006895_3_0052",
+   "root": "/home/user/astro_data_4",
+   "run": 6895,
+   "shifts": [
+    [
+     0.134,
+     0.0354
+    ]
+   ],
+   "status": 3,
+   "title": "M71 (NGC 6838), SDSS run 6895 camcol 3 field 52",
+   "truth": "truth_hugs_ngc6838_meth1.npz",
+   "windows": 82
+  },
+  "ngc6934": {
+   "camcol": 1,
+   "date_obs": "2000-09-27",
+   "densities": [
+    0.0405,
+    0.0918
+   ],
+   "field": 29,
+   "fwhm_px": [
+    2.1813,
+    2.1813
+   ],
+   "nstar": 1,
+   "patches": [
+    [
+     370,
+     1230
+    ],
+    [
+     610,
+     1220
+    ]
+   ],
+   "patches_built": [
+    [
+     370,
+     1230
+    ],
+    [
+     610,
+     1220
+    ],
+    [
+     480,
+     1220
+    ]
+   ],
+   "prefix": "patch_r_001738_1_0029",
+   "root": "/home/user/astro_data_4",
+   "run": 1738,
+   "shifts": [
+    [
+     -1.0029,
+     -0.1272
+    ],
+    [
+     0.1904,
+     0.1047
+    ]
+   ],
+   "status": 2,
+   "title": "NGC 6934, SDSS run 1738 camcol 1 field 29",
+   "truth": "truth_hugs_ngc6934_meth1.npz",
+   "windows": 452
+  }
+ },
+ "note": "registry of the held-out clusters of the cluster-dependence test (experiments/clusterdep_select.py build); root is $ASTRO_DATA_4 at the time of writing"
+}

@@ -1,0 +1,28 @@
+# (id, what, old, new, k): single-point mutants of exp_moving_width.py — round 100's new code (a2_invariance's exact logarithm, a2_state,
+# a2_fixed_point, a2_lemma, the symmetric-line, lemma and held-run lines, a2e_job's steps_to, null_cluster and its use in outcome and
+# split_summary, cap_interval).
+M = [
+ ('X00', 'control', 'NULL_TOL = 1e-8 ', 'NULL_TOL = 1e-8 ', 0),
+ ('V01', 'lg: natural log', "/ (2 * ss * ss) / np.log(10) for x in un]", "/ (2 * ss * ss) for x in un]", 0),
+ ('V02', 'a2_state: w without A', "RT._alpha_of(L, np.array([abs(w) * A_A]), RT.coef_crit)", "RT._alpha_of(L, np.array([abs(w)]), RT.coef_crit)", 0),
+ ('V03', 'fixed point: +d/λ', "return dd / ss, lam, -dd / lam / ss, dc", "return dd / ss, lam, dd / lam / ss, dc", 0),
+ ('V04', 'fixed point: ∂σ̇/∂σ', "lam = float(np.asarray(RN.critical_jac_nd(L, K, f)(0.0, z))[1, 1])\n    return dd", "lam = float(np.asarray(RN.critical_jac_nd(L, K, f)(0.0, z))[2, 2])\n    return dd", 0),
+ ('V05', 'lemma: without the −w(∂φ)² term', "(r * P * (u * u / s_ ** 4 - 1 / s_ ** 2) - wv * (P * u / s_ ** 2) ** 2)", "(r * P * (u * u / s_ ** 4 - 1 / s_ ** 2))", 0),
+ ('V06', 'lemma: ±1 counted with the centre', "parts = {'0': float(t[k == 0].sum()), '1':", "parts = {'0': float(t[np.abs(k) <= 1].sum()), '1':", 0),
+ ('V07', 'lemma: the mean over N/2', "t = L.G * L.m * wv / XS.size * (", "t = L.G * L.m * wv / (XS.size / 2) * (", 0),
+ ('V08', 'the lemma line: the smallest output', "xl = max(col, key=lambda x: x['jcc'])", "xl = min(col, key=lambda x: x['jcc'])", 0),
+ ('V09', 'held: any last row', "held = [(r, r['rows'][-1]) for r in A2E + more if r['rows'] and abs(r['rows'][-1]['dc']) < 1e-12]", "held = [(r, r['rows'][-1]) for r in A2E + more if r['rows']]", 0),
+ ('V10', 'steps_to ignored', "while so.status == 'running' and so.t < (S_A2E_STEPS[1] if steps_to is None else steps_to):", "while so.status == 'running' and so.t < S_A2E_STEPS[1]:", 0),
+ ('V11', 'the step line: BDF λ from the first output', "lam_at = lambda s_: next((x['jcc'] for x in r['rows'] if x['s'] >= s_), r['rows'][-1]['jcc'])", "lam_at = lambda s_: r['rows'][0]['jcc']", 0),
+ ('V12', 'null_cluster: residual 1e-7', "    if rms >= 1e-8 or not sp['n_rest']", "    if rms >= 1e-7 or not sp['n_rest']", 0),
+ ('V13', 'null_cluster: relative w error', "abs(abs(th[i, 1]) - ss[k]), abs(w[i] - As[k]))", "abs(abs(th[i, 1]) - ss[k]), abs(w[i] / As[k] - 1) * 1e-3)", 0),
+ ('V14', 'null_cluster: no rms test', "return bool(err < EXACT_TOL and sp['rest_rms'] < NULL_TOL)", "return bool(err < EXACT_TOL)", 0),
+ ('V15', 'null_cluster: an unassigned feature allowed', " or any(i is None for i in sp['main']):", ":", 0),
+ ('V16', 'outcome: the predicate skipped', "if cs is None or null_cluster(th[formed], w[formed], cs, ss, As, m['rms']):", "if True:", 0),
+ ('V17', 'summary: HP left out of the null test', "for lab, rs in (('H', H), ('H3', H3), ('HP', HP)):\n        for r in (rs if rs is not None else []):\n            rows.append", "for lab, rs in (('H', H), ('H3', H3)):\n        for r in (rs if rs is not None else []):\n            rows.append", 0),
+ ('V18', 'cap_interval: the upper end not tried', "hi = next((e for e in sorted(v for v in errs if v > SPLIT_CS) if not same(e * (1 + 1e-12))), np.inf)", "hi = np.inf", 0),
+ ('V19', 'cap_interval: just below for the upper end', "if not same(e * (1 + 1e-12))), np.inf)", "if not same(e * (1 - 1e-12))), np.inf)", 0),
+ ('V20', 'cap_interval: other-sign kernels too', "                if np.sign(w[i]) == np.sign(As[k]):\n                    errs.add", "                if True:\n                    errs.add", 0),
+ ('V21', 'the interval rounded outward', "every cap in ({math.ceil(lo * 1e4) / 1e4:.4f}, {math.floor(hi * 1e4) / 1e4", "every cap in ({math.floor(lo * 1e4) / 1e4:.4f}, {math.ceil(hi * 1e4) / 1e4", 0),
+ ('V22', 'the shared-kernel note always', "\", where the other feature's only kernel of its sign is this one, left to it by \"\n                                                 \"distinctness\" if max(mc)[1] in sh else ''", "\", where the other feature's only kernel of its sign is this one, left to it by \"\n                                                 \"distinctness\"", 0),
+]

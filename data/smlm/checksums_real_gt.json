@@ -1,0 +1,126 @@
+{
+ "files": {
+  "Cos7_Nup96_A647_COT_Au_17_1_MMStack_Pos0.ome.tif": {
+   "bytes": 400000000,
+   "full_file_bytes": 4302893758,
+   "full_file_md5_published_by_zenodo": "5422b25b653fc8343e966d3696c780ac",
+   "local_name": "Cos7_Nup96_A647_COT_Au_17_1_MMStack_Pos0.ome.tif.part0-400MB",
+   "prefix_only": true,
+   "record": "https://doi.org/10.5281/zenodo.3540443",
+   "set": "nup96_au",
+   "sha256": "b03a08f1d74045c0c1aa73b754ae1e57beecd65cd9e652a2b5668711040d8a44",
+   "url": "https://zenodo.org/api/records/3540443/files/Cos7_Nup96_A647_COT_Au_17_1_MMStack_Pos0.ome.tif/content"
+  },
+  "Cos7_Nup96_A647_COT_Au_17_1_locs.csv": {
+   "bytes": 72404532,
+   "full_file_bytes": 72404532,
+   "full_file_md5_published_by_zenodo": "38a816e0302ef102c38d645e3b856e0f",
+   "local_name": "Cos7_Nup96_A647_COT_Au_17_1_locs.csv",
+   "prefix_only": false,
+   "record": "https://doi.org/10.5281/zenodo.3540443",
+   "set": "nup96_au",
+   "sha256": "742e6a6e86c4aa57c3d7029f5c1bcf83ffd00eab29937e2f4573c2da3a40510f",
+   "url": "https://zenodo.org/api/records/3540443/files/Cos7_Nup96_A647_COT_Au_17_1_locs.csv/content"
+  },
+  "Cos7_Nup96_A647_COT_Au_18_1_MMStack_Pos0.ome.tif": {
+   "bytes": 400000000,
+   "full_file_bytes": 4302909026,
+   "full_file_md5_published_by_zenodo": "b9e6a5fa7ee9581ca31205ce40eec03b",
+   "local_name": "Cos7_Nup96_A647_COT_Au_18_1_MMStack_Pos0.ome.tif.part0-400MB",
+   "prefix_only": true,
+   "record": "https://doi.org/10.5281/zenodo.3540443",
+   "set": "nup96_au",
+   "sha256": "ce687b028387e9616cd6f6cc129ac6f304f3a9765c10bc7b71646797a06aab30",
+   "url": "https://zenodo.org/api/records/3540443/files/Cos7_Nup96_A647_COT_Au_18_1_MMStack_Pos0.ome.tif/content"
+  },
+  "Cos7_Nup96_A647_COT_Au_18_1_locs.csv": {
+   "bytes": 71802563,
+   "full_file_bytes": 71802563,
+   "full_file_md5_published_by_zenodo": "daa88e73d3fc548509530ee5578c4444",
+   "local_name": "Cos7_Nup96_A647_COT_Au_18_1_locs.csv",
+   "prefix_only": false,
+   "record": "https://doi.org/10.5281/zenodo.3540443",
+   "set": "nup96_au",
+   "sha256": "29fb9e2fdce4eb42290b3f7ee7327c54d0de2e7459dde06e8f7d9ef4f5d33d3d",
+   "url": "https://zenodo.org/api/records/3540443/files/Cos7_Nup96_A647_COT_Au_18_1_locs.csv/content"
+  },
+  "Cos7_Nup96_A647_COT_Au_WF17_MMStack_Pos0.ome.tif": {
+   "bytes": 625365,
+   "full_file_bytes": 625365,
+   "full_file_md5_published_by_zenodo": "c5766164271c597c3f1fe31e33802379",
+   "local_name": "Cos7_Nup96_A647_COT_Au_WF17_MMStack_Pos0.ome.tif",
+   "prefix_only": false,
+   "record": "https://doi.org/10.5281/zenodo.3540443",
+   "set": "nup96_au",
+   "sha256": "c885ab0ef115969975001e155615e3c97e42577df411ad07bea80b26c45db926",
+   "url": "https://zenodo.org/api/records/3540443/files/Cos7_Nup96_A647_COT_Au_WF17_MMStack_Pos0.ome.tif/content"
+  },
+  "Cos7_Nup96_A647_COT_Au_WF18_MMStack_Pos0.ome.tif": {
+   "bytes": 625363,
+   "full_file_bytes": 625363,
+   "full_file_md5_published_by_zenodo": "a1a715109bc7925128699eb3d40ebd93",
+   "local_name": "Cos7_Nup96_A647_COT_Au_WF18_MMStack_Pos0.ome.tif",
+   "prefix_only": false,
+   "record": "https://doi.org/10.5281/zenodo.3540443",
+   "set": "nup96_au",
+   "sha256": "87e476ca274ea132b7e3b35bf6fc71afe95d16e26712f0df2660b70b7ea52554",
+   "url": "https://zenodo.org/api/records/3540443/files/Cos7_Nup96_A647_COT_Au_WF18_MMStack_Pos0.ome.tif/content"
+  },
+  "NPCData_glass_EPI.tif": {
+   "bytes": 2163862,
+   "full_file_bytes": 2163862,
+   "full_file_md5_published_by_zenodo": "fcc31f485bc90bb4bf27dba9d0be36c8",
+   "local_name": "NPCData_glass_EPI.tif",
+   "prefix_only": false,
+   "record": "https://doi.org/10.5281/zenodo.5068525",
+   "set": "heil_npc",
+   "sha256": "13e4610ec615279ccc0cdff160c51698121894fb450515585282400eeee9a115",
+   "url": "https://zenodo.org/api/records/5068525/files/NPCData_glass_EPI.tif/content"
+  },
+  "NPCData_glass_STORM.tif": {
+   "bytes": 562040008,
+   "full_file_bytes": 562040008,
+   "full_file_md5_published_by_zenodo": "1573237de6ab5ec7c9a0508251faa996",
+   "local_name": "NPCData_glass_STORM.tif",
+   "prefix_only": false,
+   "record": "https://doi.org/10.5281/zenodo.5068525",
+   "set": "heil_npc",
+   "sha256": "41a7aa3ca0792d7a1c9e29a5435e3218da289edfdb858f77557ecc9591e6f1fd",
+   "url": "https://zenodo.org/api/records/5068525/files/NPCData_glass_STORM.tif/content"
+  },
+  "NPCData_glass_STORM_loc-protocol.txt": {
+   "bytes": 2692,
+   "full_file_bytes": 2692,
+   "full_file_md5_published_by_zenodo": "d97187a4d9227f051e92d341d7c8aad5",
+   "local_name": "NPCData_glass_STORM_loc-protocol.txt",
+   "prefix_only": false,
+   "record": "https://doi.org/10.5281/zenodo.5068525",
+   "set": "heil_npc",
+   "sha256": "470f5850b98b2fb725afbd845237c54bab4a3aab76a2bbbf46ecd199a1795c95",
+   "url": "https://zenodo.org/api/records/5068525/files/NPCData_glass_STORM_loc-protocol.txt/content"
+  },
+  "NPCData_glass_STORM_loc.csv": {
+   "bytes": 86046259,
+   "full_file_bytes": 86046259,
+   "full_file_md5_published_by_zenodo": "e24bc3f79a5ab5b51f0825256a2f53c2",
+   "local_name": "NPCData_glass_STORM_loc.csv",
+   "prefix_only": false,
+   "record": "https://doi.org/10.5281/zenodo.5068525",
+   "set": "heil_npc",
+   "sha256": "78d6643d28f2128658105636090f068e430027180a7c0e68943cda39c291d438",
+   "url": "https://zenodo.org/api/records/5068525/files/NPCData_glass_STORM_loc.csv/content"
+  },
+  "sim4_1_MMStack_Pos0.ome.tif": {
+   "bytes": 300000000,
+   "full_file_bytes": 4301948112,
+   "full_file_md5_published_by_zenodo": "6d8e849e2f25d139a9785ae1809be30a",
+   "local_name": "sim4_1_MMStack_Pos0.ome.tif.part0-300MB",
+   "prefix_only": true,
+   "record": "https://doi.org/10.5281/zenodo.7771932",
+   "set": "simflux",
+   "sha256": "75341f1baaf4eff7de947627c20e65e1f76fdff60c1051052fccd9fbda49d64a",
+   "url": "https://zenodo.org/api/records/7771932/files/sim4_1_MMStack_Pos0.ome.tif/content"
+  }
+ },
+ "recorded_utc": "2026-11-09T07:46:44Z"
+}

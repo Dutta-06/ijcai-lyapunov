@@ -1,0 +1,25 @@
+{
+ "files": {
+  "Cos7_Nup96_A647_COT_Au_19_1_MMStack_Pos0.ome.tif": {
+   "bytes": 400000000,
+   "full_file_bytes": 4303400016,
+   "full_file_md5_published_by_zenodo": "91c0877bd819217a49f1cd407580dddd",
+   "local_name": "Cos7_Nup96_A647_COT_Au_19_1_MMStack_Pos0.ome.tif.part0-400MB",
+   "prefix_only": true,
+   "record": "https://doi.org/10.5281/zenodo.3540443",
+   "sha256": "ef122ce79e506efa5a7aff78b5c103762eb3d99869d3e99b7ab3076461c4eada",
+   "url": "https://zenodo.org/api/records/3540443/files/Cos7_Nup96_A647_COT_Au_19_1_MMStack_Pos0.ome.tif/content"
+  },
+  "Cos7_Nup96_A647_COT_Au_19_1_locs.csv": {
+   "bytes": 55176718,
+   "full_file_bytes": 55176718,
+   "full_file_md5_published_by_zenodo": "556c8cc46abe603a6510cf04731cdb3e",
+   "local_name": "Cos7_Nup96_A647_COT_Au_19_1_locs.csv",
+   "prefix_only": false,
+   "record": "https://doi.org/10.5281/zenodo.3540443",
+   "sha256": "05af99965d7593dfaf4ac1891abff7de60eb2ae0c41e0393b5b0ba40172acc44",
+   "url": "https://zenodo.org/api/records/3540443/files/Cos7_Nup96_A647_COT_Au_19_1_locs.csv/content"
+  }
+ },
+ "recorded_utc": "2026-11-09T14:13:55Z"
+}

@@ -1,0 +1,123 @@
+"""
+The cost of the sliding inverse scale space per frame: the least-squares tolerance of the block fits, measured in CPU time, with the detections compared
+==============================================================================================================================================================
+
+Wall-clock seconds on the shared machine of the other experiments depend on what else runs. This script measures the PROCESS CPU TIME of the packaged frame fit
+(`exp_smlm_iss.run_frame`, the a priori configuration: halo model with the 5 px high-pass, significance 5) in one process on evenly spaced test frames of two sets,
+with the block fits' tolerance 1e-8 and 200 evaluations (`full`, the setting of every main result) and 1e-4 and 25 (`fast`), each setting twice in alternation (the smaller
+time of the two is kept), and compares the detections of the two settings frame by frame: the same number of detections, and the largest position and photon difference.
+It is a measurement of the cost, not a result of the method: it uses test frames of the sets without any choice depending on them.
+
+    python experiments/exp_smlm_speed.py --run [--sets MT0.N1.LD MT0.N1.HD] [--frames 12]       (writes results/smlm/speed_raw.npz)
+    python experiments/exp_smlm_speed.py --from-raw                                              (regenerates results/smlm/speed.md)
+"""
+import argparse
+import os
+import sys
+import time
+
+os.environ.setdefault('OMP_NUM_THREADS', '1')
+import numpy as np
+
+HERE = os.path.abspath(os.path.dirname(__file__))
+REPO = os.path.abspath(os.path.join(HERE, '..'))
+sys.path.insert(0, REPO)
+sys.path.insert(0, HERE)
+import exp_smlm_iss as ISS      # noqa: E402
+import smlm_common as C         # noqa: E402
+
+OUT = os.environ.get('SPEED_OUT', os.path.join(REPO, 'results', 'smlm'))
+RAW, MD = os.path.join(OUT, 'speed_raw.npz'), os.path.join(OUT, 'speed.md')
+SETTINGS = (('full', dict(tol=1e-8, max_nfev=200)), ('fast', dict(tol=1e-4, max_nfev=25)))
+SETS = ('MT0.N1.LD', 'MT0.N1.HD')
+
+
+def evenly_spaced(a, b, n):
+    """n frame indices spread over [a, b) (all of them if fewer)."""
+    n = min(n, b - a)
+    return a + np.round(np.linspace(0, b - a - 1, n)).astype(int)
+
+
+def compare(d_full, d_fast):
+    """(equal counts, frames, largest position difference in nm, largest relative photon difference) of two detection lists (per frame arrays (k, 4) = x_nm, y_nm, photons, sigma):
+    detections are paired by sorting on x then y; frames with different counts are counted and left out of the differences."""
+    same, diff_pos, diff_ph = 0, 0.0, 0.0
+    for a, b in zip(d_full, d_fast):
+        if len(a) != len(b):
+            continue
+        same += 1
+        if len(a):
+            oa, ob = np.lexsort((a[:, 1], a[:, 0])), np.lexsort((b[:, 1], b[:, 0]))
+            diff_pos = max(diff_pos, float(np.abs(a[oa][:, :2] - b[ob][:, :2]).max()))
+            diff_ph = max(diff_ph, float((np.abs(a[oa][:, 2] - b[ob][:, 2]) / np.maximum(np.abs(a[oa][:, 2]), 1e-9)).max()))
+    return same, len(d_full), diff_pos, diff_ph
+
+
+def timed(frames, name, raw, setting):
+    """The detections of the frames at one setting and the process CPU seconds of the whole loop (one process)."""
+    opts = dict(rules=[('snr', ISS.DEFAULT['kappa'])], **setting)
+    t0 = time.process_time()
+    dets, _, _, _ = ISS.run_frames(frames, ISS.DEFAULT['cfg'], ISS.get_cal(raw, name), opts, workers=1)
+    return dets[0], time.process_time() - t0
+
+
+def run(sets=SETS, n_frames=12, out_path=RAW, raw_iss=None):
+    raw_iss = raw_iss or ISS.load_raw(ISS.RAW)
+    arrays = {}
+    for name in sets:
+        stack, _ = ISS.load_set(name)
+        a, b = ISS.dev_test_frames(name, 'test')
+        idx = evenly_spaced(a, b, n_frames)
+        frames = np.stack([C.to_photons(C.load_frames(stack, int(i), int(i) + 1))[0] for i in idx])
+        best, dets = {}, {}
+        for rep in range(2):
+            for label, setting in (SETTINGS if rep == 0 else SETTINGS[::-1]):
+                d, cpu = timed(frames, name, raw_iss, setting)
+                dets[label] = d
+                best[label] = min(best.get(label, np.inf), cpu)
+            print('%s repeat %d: CPU s per frame %s' % (name, rep, {k: round(v / len(idx), 3) for k, v in best.items()}), flush=True)
+        same, nf, dpos, dph = compare(dets['full'], dets['fast'])
+        arrays.update({name + '|frames': idx, name + '|cpu': np.array([best['full'], best['fast']]), name + '|cmp': np.array([same, nf, dpos, dph]),
+                       name + '|ndet': np.array([sum(len(d) for d in dets['full']), sum(len(d) for d in dets['fast'])])})
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    np.savez_compressed(out_path, **arrays, sets=np.array(sets))
+    return arrays
+
+
+def report(path=RAW):
+    z = np.load(path, allow_pickle=False)
+    L = ['# The cost of the frame fit: block-fit tolerance 1e-8 (200 evaluations) against 1e-4 (25), in CPU time', '',
+         'Generated by `experiments/exp_smlm_speed.py` from `speed_raw.npz`; every number below is printed by the script. The packaged frame fit in the a priori configuration '
+         '(halo model, 5 px high-pass, significance 5) in ONE process on evenly spaced test frames; process CPU seconds of the whole loop (the smaller of two repeats per setting, '
+         'alternating), so that other jobs of the shared machine affect it much less than the wall clock. The detections of the two settings are compared frame by frame.', '']
+    rows = []
+    for name in [str(s) for s in z['sets']]:
+        idx, cpu, cmp_, nd = z[name + '|frames'], z[name + '|cpu'], z[name + '|cmp'], z[name + '|ndet']
+        n = len(idx)
+        rows.append([name, str(n), '%.3f' % (cpu[0] / n), '%.3f' % (cpu[1] / n), '%.2f' % (cpu[0] / cpu[1]), '%d / %d' % (cmp_[0], cmp_[1]), '%d / %d' % (nd[0], nd[1]),
+                     '%.4f' % cmp_[2], '%.2e' % cmp_[3]])
+    hdr = ['set', 'test frames', 'CPU s / frame, full', 'CPU s / frame, fast', 'speed-up', 'frames with equal detection counts', 'detections full / fast', 'largest position difference (nm)',
+           'largest relative photon difference']
+    L.append('| ' + ' | '.join(hdr) + ' |\n|' + '|'.join(['---'] * len(hdr)) + '|\n' + '\n'.join('| ' + ' | '.join(r) + ' |' for r in rows))
+    return '\n'.join(L) + '\n'
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--run', action='store_true')
+    ap.add_argument('--from-raw', action='store_true')
+    ap.add_argument('--sets', nargs='*', default=list(SETS))
+    ap.add_argument('--frames', type=int, default=12)
+    A = ap.parse_args()
+    if A.run:
+        run(tuple(A.sets), A.frames)
+    if A.run or A.from_raw:
+        with open(MD, 'w') as f:
+            f.write(report())
+        print('wrote', MD)
+    else:
+        ap.error('give --run or --from-raw')
+
+
+if __name__ == '__main__':
+    main()

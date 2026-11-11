@@ -1,0 +1,90 @@
+{
+ "config": {
+  "kappa": 2.0,
+  "r_ex": 1.2,
+  "sigma_b": 3.0
+ },
+ "data_files": {
+  "patch_r_002507_6_0039_x640_y1180_100x100/patch_arrays.npz": "015a1744faee95ab0d0998fb3358da280101a3f2b0f2474029a0871d8a8cc1ef",
+  "patch_r_002507_6_0039_x920_y1180_100x100/patch_arrays.npz": "9659ba646e8603b86574100e426ee0ed43e545c63f1250b4cc9605310f5b0bf4",
+  "patch_r_004646_3_0081_x1870_y820_100x100/patch_arrays.npz": "48a36cb29f663aa4a260f28a9e081ac35b15103addecc8852e7fdc3efbc5b001",
+  "truth_hugs_ngc5272_meth1.npz": "b4d8b54dce5bd3b6ab59e3434e52db9d4ba09c48dd351b4fb116c44f84348810",
+  "truth_hugs_ngc7078_meth1.npz": "53e92c8fb1879093cb955e60fc019b4aacdddc0f72de689d26ee29123ae4b01b"
+ },
+ "default": [
+  5.0,
+  1.2,
+  5.0
+ ],
+ "files": {
+  "data/astro/checksums_fresh.json": "2396aa4fec5135d08f59f35663efc74c9f76cf445332abc5cbe61d7f226ad618",
+  "experiments/astro_common.py": "a25d698f21adfc0a15647477715bb64238c981900470310eabc8dbbd86e5d1da",
+  "experiments/astro_fresh.py": "7df29eba9da2cd3152a7dcca5ceda2d1620038af0e0006be2143eff36e275626",
+  "experiments/astro_second.py": "3688e6b5f424c1de650606fe82d64daa67f1b55e3d4c5f7378c53bbfcb6e953f",
+  "experiments/exp_astro_baselines.py": "4c5e7451247d73857b77b7d521c83ae682f87fc58ea9c0ec98d0177c04061b32",
+  "experiments/exp_astro_baselines_repeat.py": "770bb93a47276b208ddc8ab71ea97f05366b3a28783f971ad58881dfe86ac724",
+  "experiments/exp_astro_cyclefix.py": "e80c21f067fc872e9456f98e48eeaba1245cb298debbba9db4d3e869ccaaad83",
+  "experiments/exp_astro_fresh_baselines.py": "d9f4ec189f5ced123bf9bb76b75fce953a6b64ff018893c29016e31a0ca30e0b",
+  "experiments/exp_astro_m2.py": "8acf3c302e48f7ef3e1c93c98af3c120f954e72a7fac5a0ece788a34a3b7de74",
+  "experiments/exp_astro_psf.py": "51e3fb651c528518536a7bc4d71e698a9c8af0653e1fd63dce46c97e6bda7718",
+  "results/astro/baselines_hp2_raw.npz": "d28999b99fe00e019935f02654040b87d601c3c94d3cc7fccba841b0e2cc116d",
+  "results/astro/freeze.json": "1fc355bb0b28b44a7d03f8f303a466406e7451d8a14435c4015d360f0b2bd6f7",
+  "results/astro/fresh_baseline_catalogs.npz": "aa3362cd58ed8d6f439c1c29f2a7c08ead303432985932464b50df0cd8747bb2",
+  "results/astro/fresh_fields.json": "74e8b049a55d2fc3a902cfe3fab722734dadbd0b0907fcd732335f8dfd9239d5",
+  "results/astro/fresh_patches.json": "3d0bdfda66338c5dafc62ebd3d9c05832127dea07b9ccac5f76143d6c4cf26e7",
+  "results/astro/fresh_plan.md": "4cbaa02a910db6e36ea2eeb94e478dedf1e57ac6f2c7f1736ff8f064a525c076",
+  "results/astro/fresh_rule.md": "a1d2360ec83270e3818b09d5a86a51fd63469752f0c796690b1293835d125a51",
+  "results/astro/fresh_selection.txt": "6f6920cbfb2c042f891c3dc9b65653e9f3fa87063d6d02956337f65d0a85f09e",
+  "results/astro/fresh_selection_A1.txt": "0a2c376bda9a64393312c3f48175e6d708745f076b12a99ebd1341d158e9b657",
+  "results/astro/fresh_survey.txt": "193d3186d91e42ab632ffa9115e9c0079539474100b14e9253f6aa26b1014b80",
+  "src/core/imaging.py": "23ec17ea1e85f43161b4d6262d5555c37d9ddccfd6c3e13d880ba3f51f5e5be6",
+  "src/core/imaging_guard.py": "8f67aff1c8b9e7ff2d5102ebb132956fd9f4323f42b2a206b89b464e98242ae0",
+  "src/core/psf_general.py": "5e253b9303271f4350d83a8c2dced6dd329567ddbcef3bc3b0ca31db6443dab9"
+ },
+ "front_end_baselines": {
+  "crowdsource": "cs2_hp2_t3_pm",
+  "photutils": "phu2_hp3_all_i6_b1"
+ },
+ "frozen_code": "38d1d52fa9543eb072e6d9eea823e9356521423386de13c7be84dadd515e49d2",
+ "patches": [
+  [
+   "ngc5272",
+   [
+    1870,
+    820
+   ]
+  ],
+  [
+   "ngc7078",
+   [
+    640,
+    1180
+   ]
+  ],
+  [
+   "ngc7078",
+   [
+    920,
+    1180
+   ]
+  ]
+ ],
+ "shifts": {
+  "ngc5272|1870,820": [
+   0.1359,
+   -0.0259
+  ],
+  "ngc7078|640,1180": [
+   0.3635,
+   -0.0569
+  ],
+  "ngc7078|920,1180": [
+   0.3764,
+   -0.1199
+  ]
+ },
+ "tuned_baselines": {
+  "crowdsource": "crowdsource|snr5|ff0|qf0|spinf",
+  "photutils": "photutils_ext_all_local_i6"
+ }
+}

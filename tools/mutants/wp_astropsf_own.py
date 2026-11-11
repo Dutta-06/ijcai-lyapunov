@@ -1,0 +1,50 @@
+"""Single-point mutants of experiments/exp_astro_psf.py, for tools/mutants.py:
+
+    venv/bin/python tools/mutants.py --exp exp_astro_psf --tests tests/test_exp_astro_psf.py --raw results/astro/psf_raw.npz --md results/astro/psf.md --out-env PSF_OUT \\
+        --extra results/astro/m2_raw.npz --spec tools/mutants/wp_astropsf_own.py --work <scratch dir> [--slot a --i0 0 --step 2]
+
+A tuple is (id, what, old, new[, k]): `old` replaced by `new` at its k-th occurrence in experiments/exp_astro_psf.py. The kill criterion is the tests file alone.
+"""
+M = [
+    ('R01', 'residual_sd: no 1.4826 factor of the MAD', "return float(1.4826 * np.median(np.abs(zi - np.median(zi))))", "return float(1.0 * np.median(np.abs(zi - np.median(zi))))"),
+    ('R02', 'residual_sd: the whole patch, border included', "zi = z[5:-5, 5:-5]", "zi = z"),
+    ('R03', 'residual_sd: variance = counts x gain', "expected / patch['gain'] + patch['dark'])\n    y = P.highpass", "expected * patch['gain'] + patch['dark'])\n    y = P.highpass"),
+    ('R04', 'residual_sd: the dark variance not added', "expected / patch['gain'] + patch['dark'])\n    y = P.highpass", "expected / patch['gain'])\n    y = P.highpass"),
+    ('R05', 'residual_sd: the model not subtracted', "z = (y - P.synth(det[:, :2], det[:, 2])) * sw", "z = y * sw"),
+    ('R06', 'residual_sd: the mean instead of the median', "return float(1.4826 * np.median(np.abs(zi - np.median(zi))))", "return float(1.4826 * np.median(np.abs(zi - np.mean(zi))))"),
+    ('P01', 'path: the smoothing of the weights is 3 px', "gaussian_filter(dn, 1.5, mode='reflect'), np.percentile(dn, 1))\n    sw = 1.0 / np.sqrt(expected / patch['gain'] + patch['dark'])\n    y = P.highpass(dn - np.median(dn))\n    reach",
+     "gaussian_filter(dn, 3.0, mode='reflect'), np.percentile(dn, 1))\n    sw = 1.0 / np.sqrt(expected / patch['gain'] + patch['dark'])\n    y = P.highpass(dn - np.median(dn))\n    reach"),
+    ('P02', 'path: the path is run to the largest significance, not the smallest', "tau_max=1.0 / (min(kappas) * scale))", "tau_max=1.0 / (max(kappas) * scale))"),
+    ('P03', 'path: BIC with four parameters per unit', "n_par=3)\n    h = R['hist'][i]\n    kb", "n_par=4)\n    h = R['hist'][i]\n    kb"),
+    ('P04', 'path: the clean-up level of the BIC block is sqrt(2 ln N)', "kb = float(np.sqrt(3.0 * np.log(ny * nx)))", "kb = float(np.sqrt(2.0 * np.log(ny * nx)))"),
+    ('P05', 'path: no clean-up of the BIC block', "keep = IM.unit_significance(P, sw, h['c'], h['w']) >= kb", "keep = IM.unit_significance(P, sw, h['c'], h['w']) >= 0.0"),
+    ('P06', 'path: no clean-up of the significance levels', "keep = IM.unit_significance(P, sw, h['c'], h['w']) >= k\n", "keep = IM.unit_significance(P, sw, h['c'], h['w']) >= 0.0\n"),
+    ('P07', 'path: the exclusion zone off', "r_ex=rex,", "r_ex=0.0,"),
+    ('P08', 'path: the high-pass of the data is dropped', "y = P.highpass(dn - np.median(dn))\n    reach", "y = dn - np.median(dn)\n    reach"),
+    ('P09', 'path: the residual scale of a catalogue with its positions swapped', "np.c_[d[0], d[1], d[2]]) for k, d in out.items()}", "np.c_[d[1], d[0], d[2]]) for k, d in out.items()}"),
+    ('P10', 'path: the BIC key is the smallest level', "out[0.0] = (h['c'][keep, 0].copy()", "out[1.0] = (h['c'][keep, 0].copy()"),
+    ('S01', 'stamp shape: the radius is 3 px', "def stamp_shape(stamp, radius=5.0):", "def stamp_shape(stamp, radius=3.0):"),
+    ('S02', 'stamp shape: the orientation is the full angle', "np.degrees(0.5 * np.arctan2(e2, e1))", "np.degrees(np.arctan2(e2, e1))"),
+    ('S03', 'stamp shape: the ellipticity is |e1|', "np.array([np.hypot(e1, e2),", "np.array([abs(e1),"),
+    ('S04', 'stamp shape: e2 without the factor 2', "e1, e2 = (mxx - myy) / (mxx + myy), 2 * mxy / (mxx + myy)", "e1, e2 = (mxx - myy) / (mxx + myy), mxy / (mxx + myy)"),
+    ('S05', 'stamp shape: the sd along x is the sd along y', "np.sqrt(mxx), np.sqrt(myy)])", "np.sqrt(myy), np.sqrt(mxx)])"),
+    ('S06', 'stamp arrays: the rms stored in the other order', "rms=np.array([f['rms_isotropic'], f['rms']])", "rms=np.array([f['rms'], f['rms_isotropic']])"),
+    ('S07', 'stamp arrays: no kernel kind', "kind=np.array([f['kind']])", "kind=np.array(['isotropic'])"),
+    ('J01', 'part_run: the freeze not checked', "    X.check_freeze(froz)\n    hp, rex, kap, f = X.choose(froz)", "    hp, rex, kap, f = X.choose(froz)"),
+    ('J02', 'part_run: a patch with a result is run again', "if 'P|%s|x%d_y%d|cfg' % (ds, pxy[0], pxy[1]) not in cur]", "if True]"),
+    ('J03', 'part_run: the first cluster only', "for ds in CLUSTERS for pxy in X.SECOND[ds]['patches'] if", "for ds in CLUSTERS[:1] for pxy in X.SECOND[ds]['patches'] if"),
+    ('J04', 'part_run: the part key of the patch', "X.save_part(out_path, 'P|%s|x%d_y%d' % (ds, pxy[0], pxy[1]), arrays)", "X.save_part(out_path, 'Q|%s|x%d_y%d' % (ds, pxy[0], pxy[1]), arrays)"),
+    ('B01', 'bright stars: ten bins', "NB = 9 ", "NB = 10 "),
+    ('B02', 'bright stars: the faint bins', "raw[pre + key + '|n_matched'][:NB].sum()", "raw[pre + key + '|n_matched'][NB:].sum()"),
+    ('B03', 'bright stars: the truth of the faint bins', "int(raw[pre + key + '|n_true'][:NB].sum())", "int(raw[pre + key + '|n_true'][NB:].sum())"),
+    ('T01', 'report: the frozen raw read for the new rows', "pre = ('P|%s|x%d_y%d|' if which == 'new' else 'T2|%s|x%d_y%d|') % (ds, pxy[0], pxy[1])", "pre = ('T2|%s|x%d_y%d|' if which == 'new' else 'P|%s|x%d_y%d|') % (ds, pxy[0], pxy[1])"),
+    ('T02', 'report: 24 blocks of a patch', "idx = X.boot_idx(25)", "idx = X.boot_idx(24)"),
+    ('T03', 'report: the pooled bootstrap not stratified by patch', "idx = X.boot_idx_strat([25] * len(plist))", "idx = X.boot_idx(25 * len(plist))"),
+    ('T04', 'report: the new rows read from the frozen raw', "which = 'new' if (label, key) in NEW_ROWS else 'froz'\n            if (which, key) not in blk:", "which = 'froz'\n            if (which, key) not in blk:"),
+    ('T05', 'report: the pairs with the arguments exchanged', "dc, dp, df = X.boot_diff(blk[(wa, ka)], blk[(wb, kb)], idx)", "dc, dp, df = X.boot_diff(blk[(wb, kb)], blk[(wa, ka)], idx)"),
+    ('T06', 'report: the kappa of the cluster read from the wrong element', "kap = float(raw['P|%s|x%d_y%d|cfg' % (ds, plist[0][0], plist[0][1])][2])", "kap = float(raw['P|%s|x%d_y%d|cfg' % (ds, plist[0][0], plist[0][1])][1])"),
+    ('T07', 'report: the stamp rms columns exchanged', "'%.5f' % rms[0], kind, '%d' % (len(p5) if kind == 'general' else 3), '%.5f' % rms[1]", "'%.5f' % rms[1], kind, '%d' % (len(p5) if kind == 'general' else 3), '%.5f' % rms[0]"),
+    ('T08', 'report: the number of parts of an isotropic kernel', "(len(p5) if kind == 'general' else 3)", "(len(p5) if kind == 'general' else 1)"),
+    ('T09', 'report: the residual scale columns exchanged', "'%.2f' % raw[pre + 'ours|rsd'][0], '%.2f' % raw[pre + 'ours|rsd'][1], '%.2f' % raw[pre + 'default|rsd'][0], '%.2f' % raw[pre + 'default|rsd'][1]]",
+     "'%.2f' % raw[pre + 'ours|rsd'][1], '%.2f' % raw[pre + 'ours|rsd'][0], '%.2f' % raw[pre + 'default|rsd'][0], '%.2f' % raw[pre + 'default|rsd'][1]]"),
+]

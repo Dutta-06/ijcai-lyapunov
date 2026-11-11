@@ -1,0 +1,171 @@
+{
+ "used": {
+  "dev": [
+   [
+    503,
+    "wind"
+   ],
+   [
+    23516,
+    "debutanizer"
+   ],
+   [
+    42367,
+    "treasury"
+   ]
+  ],
+  "test": [
+   [
+    197,
+    "cpu_act"
+   ],
+   [
+    216,
+    "elevators"
+   ],
+   [
+    507,
+    "space_ga"
+   ],
+   [
+    23515,
+    "sulfur"
+   ],
+   [
+    42183,
+    "dataset_sales"
+   ],
+   [
+    42369,
+    "weather_izmir"
+   ],
+   [
+    43093,
+    "MiamiHousing2016"
+   ],
+   [
+    43919,
+    "airfoil_self_noise"
+   ]
+  ]
+ },
+ "rule_output": {
+  "dev": [
+   [
+    503,
+    "wind"
+   ],
+   [
+    23516,
+    "debutanizer"
+   ],
+   [
+    42369,
+    "weather_izmir"
+   ]
+  ],
+  "test": [
+   [
+    197,
+    "cpu_act"
+   ],
+   [
+    216,
+    "elevators"
+   ],
+   [
+    507,
+    "space_ga"
+   ],
+   [
+    23515,
+    "sulfur"
+   ],
+   [
+    42183,
+    "dataset_sales"
+   ],
+   [
+    42367,
+    "treasury"
+   ],
+   [
+    43093,
+    "MiamiHousing2016"
+   ],
+   [
+    43919,
+    "airfoil_self_noise"
+   ]
+  ]
+ },
+ "info": {
+  "503": {
+   "name": "wind",
+   "n": 6574,
+   "d": 14,
+   "sha": "a80cda28c8acd74f3823d8fd52edfc9e53b54a2b35382c336c4ce1343bc9c82f"
+  },
+  "23516": {
+   "name": "debutanizer",
+   "n": 2394,
+   "d": 7,
+   "sha": "d86dc143b55fb74ef58b3e17adce2ecfbe2c64ed1ee58e522498af72c85f3735"
+  },
+  "42369": {
+   "name": "weather_izmir",
+   "n": 1461,
+   "d": 9,
+   "sha": "6b54c83ca11c2aeb8f2ae044d91101a919698a21f97b6ac3c2c59147505709bf"
+  },
+  "197": {
+   "name": "cpu_act",
+   "n": 8192,
+   "d": 21,
+   "sha": "07c20ac5e4d24a97a533354dd5b215f3973b38cf6bb99982f416f74addeea695"
+  },
+  "216": {
+   "name": "elevators",
+   "n": 16599,
+   "d": 18,
+   "sha": "6eeb3569ac2d7ba89b4b6be7d5f9ae32e7fe349e1033d2673dcd0b22bd7c9025"
+  },
+  "507": {
+   "name": "space_ga",
+   "n": 3107,
+   "d": 6,
+   "sha": "ccbb61453142cb429bc1c988583294a24f578655c48005946e2bdb7787bb8fcd"
+  },
+  "23515": {
+   "name": "sulfur",
+   "n": 10081,
+   "d": 6,
+   "sha": "ae485ba4360bf937c8b61e1c4cedcdb5d208e3fb33b0d76fc970803601f7684e"
+  },
+  "42183": {
+   "name": "dataset_sales",
+   "n": 10738,
+   "d": 14,
+   "sha": "081fe96a31227b1ea4b51d53546acc6056ca20085e0ee043eec4a74df4711fdb"
+  },
+  "42367": {
+   "name": "treasury",
+   "n": 1049,
+   "d": 15,
+   "sha": "dcb802860548b54532bc60eec123a495353cb41c585f18e82d79cfe894b66cbd"
+  },
+  "43093": {
+   "name": "MiamiHousing2016",
+   "n": 13932,
+   "d": 16,
+   "sha": "cba990aea71f9a1cfe659c861426bdcb81026298f11f695ea169b596dbfe01f0"
+  },
+  "43919": {
+   "name": "airfoil_self_noise",
+   "n": 1503,
+   "d": 5,
+   "sha": "60e267e6a1bc0ac8c4e19b92275df15a414a869e5487b4e2c142dcd3543a3922"
+  }
+ },
+ "note": "The sets USED are in \"used\". They differ from the rule output in one swap: the rule puts weather_izmir (42369, rank 9) in development and treasury (42367, rank 8) in test; the list typed by hand before the rule was executed had them the other way round, development was run on treasury, so treasury was kept out of the test and weather_izmir (never seen before the test) is a test set. See kan_plan.md amendment 6."
+}

@@ -1,0 +1,31 @@
+{
+ "code": "2abff72c23875144934a74ad3edbb4dd68a7ff1735902f2c6caf1e1614ba2d93",
+ "config": {
+  "kappa": 2.0,
+  "r_ex": 1.2,
+  "sigma_b": 3.0
+ },
+ "files": {
+  "data/astro/checksums_clusterdep.json": "1c57b6fc5049e2c401e64ca120f6fe9dc2de33fa5673e8c6d2ad49a16d6db68b",
+  "experiments/astro_clusterdep.py": "244894b049bd385246b899e39ac45a061a323a508aafd60faf01224236fa0106",
+  "experiments/astro_common.py": "a25d698f21adfc0a15647477715bb64238c981900470310eabc8dbbd86e5d1da",
+  "experiments/astro_fresh.py": "7df29eba9da2cd3152a7dcca5ceda2d1620038af0e0006be2143eff36e275626",
+  "experiments/astro_second.py": "3688e6b5f424c1de650606fe82d64daa67f1b55e3d4c5f7378c53bbfcb6e953f",
+  "experiments/clusterdep_select.py": "3de021928173f5c3fdccdc4c16a02fc9325ac844f21a5829f6964420a300e62d",
+  "experiments/exp_astro_clusterdep_baselines.py": "5abff2d5b7b52aee9e5e5a08948e4f4ebd3aea1e2ce2803e7c304fcc62b52c00",
+  "experiments/exp_astro_cyclefix.py": "e80c21f067fc872e9456f98e48eeaba1245cb298debbba9db4d3e869ccaaad83",
+  "experiments/exp_astro_fresh.py": "4fb2ead92b86cff3fd377e1af40c02a0f25a125041544f804eac0824b8f4e8eb",
+  "experiments/exp_astro_m2.py": "8acf3c302e48f7ef3e1c93c98af3c120f954e72a7fac5a0ece788a34a3b7de74",
+  "experiments/exp_astro_psf.py": "51e3fb651c528518536a7bc4d71e698a9c8af0653e1fd63dce46c97e6bda7718",
+  "results/astro/clusterdep_baseline_catalogs.npz": "6584755044f2680345353d075b291f4b96d2fbcddb100924ea51fb140fdc79b6",
+  "results/astro/clusterdep_patches.json": "7c1d42a4598636e8a42e893ff798157da6ba8d7da62f62c22fee882499694509",
+  "results/astro/clusterdep_plan.md": "c6cc258ee8acdf1077efa9a7721efe665559b0f47e279fca9e4f64c8e1acffe5",
+  "results/astro/clusterdep_selection.txt": "071275a35781d7ee1ecc1421ef2292601a89fa725e333d9b5a71ec70c986a71d",
+  "results/astro/freeze.json": "1fc355bb0b28b44a7d03f8f303a466406e7451d8a14435c4015d360f0b2bd6f7",
+  "src/core/imaging.py": "23ec17ea1e85f43161b4d6262d5555c37d9ddccfd6c3e13d880ba3f51f5e5be6",
+  "src/core/imaging_guard.py": "8f67aff1c8b9e7ff2d5102ebb132956fd9f4323f42b2a206b89b464e98242ae0",
+  "src/core/psf_general.py": "5e253b9303271f4350d83a8c2dced6dd329567ddbcef3bc3b0ca31db6443dab9"
+ },
+ "rho_star": 0.8,
+ "utc": "2026-11-09T14:54:18Z"
+}

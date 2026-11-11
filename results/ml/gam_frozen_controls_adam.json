@@ -1,0 +1,18 @@
+{
+ "ctrl_l1": {
+  "lr": 0.01,
+  "sigma": 0.03
+ },
+ "ctrl_l1_id": 0,
+ "ctrl_l2": {
+  "lr": 0.01,
+  "sigma": 0.05
+ },
+ "ctrl_l2_id": 1,
+ "ours_adam": {
+  "eps": 0.0001,
+  "lr": 0.01,
+  "sigma": 0.08
+ },
+ "ours_adam_id": 3
+}

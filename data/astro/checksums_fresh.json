@@ -1,0 +1,160 @@
+{
+ "schema": 1,
+ "note": "sha256 of every file fetched by data/astro/fetch_second.py, measured from the hosts named in results/astro/second_cluster_spec.md. fetch_second.py verifies against this file and records a new entry on the first download of an unlisted key.",
+ "files": {
+  "sdss_psfield_005390_5_0168": {
+   "filename": "psField-005390-5-0168.fit",
+   "bytes": 391680,
+   "sha256": "267d021a4ab8861aaea0a6b581aecb155c7724c6878984180a18affd148786e7",
+   "source_last_modified": "Fri, 05 Jun 2009 21:31:03 GMT",
+   "first_recorded_utc": "2026-11-08T22:00:28Z"
+  },
+  "sdss_psfield_004646_3_0081": {
+   "filename": "psField-004646-3-0081.fit",
+   "bytes": 504000,
+   "sha256": "4d96dcffeebee8b18ad078ce5b911370da29f5b1bc74bd15e1510b761653d840",
+   "source_last_modified": "Sun, 31 May 2009 21:34:34 GMT",
+   "first_recorded_utc": "2026-11-08T22:00:29Z"
+  },
+  "sdss_psfield_004623_1_0324": {
+   "filename": "psField-004623-1-0324.fit",
+   "bytes": 544320,
+   "sha256": "b721a9a73b8b6e243c91e30a27fd7a5bbf02634e5e3edb9b992b55aa72d52d02",
+   "source_last_modified": "Sun, 31 May 2009 09:19:30 GMT",
+   "first_recorded_utc": "2026-11-08T22:00:29Z"
+  },
+  "sdss_psfield_001458_4_0700": {
+   "filename": "psField-001458-4-0700.fit",
+   "bytes": 786240,
+   "sha256": "7953cbfb97e510df4e34213b33cf7a7015f3844303fcf584005013814173bb4c",
+   "source_last_modified": "Fri, 22 May 2009 09:01:36 GMT",
+   "first_recorded_utc": "2026-11-08T22:00:30Z"
+  },
+  "sdss_psfield_003226_5_0127": {
+   "filename": "psField-003226-5-0127.fit",
+   "bytes": 408960,
+   "sha256": "356ad1fe6a4172ae1f8acefa7475a218720bcfbe4cd22a68ae8f47fb2c606dc4",
+   "source_last_modified": "Sat, 13 Jun 2009 05:55:08 GMT",
+   "first_recorded_utc": "2026-11-08T22:00:31Z"
+  },
+  "sdss_psfield_005391_5_0185": {
+   "filename": "psField-005391-5-0185.fit",
+   "bytes": 452160,
+   "sha256": "6cd303bb94a3945aa8e74bded39a321e91146cc4ebf2dbf153dc94e6c0532ad1",
+   "source_last_modified": "Tue, 19 May 2009 02:17:29 GMT",
+   "first_recorded_utc": "2026-11-08T22:00:31Z"
+  },
+  "sdss_psfield_001463_3_0061": {
+   "filename": "psField-001463-3-0061.fit",
+   "bytes": 279360,
+   "sha256": "6bdf47f9a70652b0bfa7091d1e743e6379fa7113039d68cf7e1d776f13ff6c30",
+   "source_last_modified": "Fri, 22 May 2009 04:59:42 GMT",
+   "first_recorded_utc": "2026-11-08T22:00:32Z"
+  },
+  "sdss_psfield_006895_3_0052": {
+   "filename": "psField-006895-3-0052.fit",
+   "bytes": 311040,
+   "sha256": "5d95bb54a07ca023b35d431f7e116b83808b8c812c8ea8dc29fad9eaa1505439",
+   "source_last_modified": "Mon, 29 Mar 2010 18:17:57 GMT",
+   "first_recorded_utc": "2026-11-08T22:00:33Z"
+  },
+  "sdss_psfield_001738_1_0029": {
+   "filename": "psField-001738-1-0029.fit",
+   "bytes": 311040,
+   "sha256": "84203712f936197edfeae07c3d9f0af3906d95f819cdd1b0acc4068877d51abd",
+   "source_last_modified": "Tue, 12 May 2009 05:25:00 GMT",
+   "first_recorded_utc": "2026-11-08T22:00:33Z"
+  },
+  "sdss_psfield_001749_6_0141": {
+   "filename": "psField-001749-6-0141.fit",
+   "bytes": 385920,
+   "sha256": "21e2bf82e0107eeb5f5938f3358d4b25d9be05497682c07d77e5338a4af1e1f1",
+   "source_last_modified": "Tue, 12 May 2009 07:41:45 GMT",
+   "first_recorded_utc": "2026-11-08T22:00:34Z"
+  },
+  "sdss_frame_r_005391_5_0185": {
+   "filename": "frame-r-005391-5-0185.fits.bz2",
+   "bytes": 3486142,
+   "sha256": "363a6ed7e6654a758c8369205fe9d6b250c5cb22038ffa74f56a4b75f689e8a2",
+   "source_last_modified": "Sun, 24 Jun 2012 09:48:00 GMT",
+   "first_recorded_utc": "2026-11-08T22:01:13Z"
+  },
+  "sdss_frame_r_004646_3_0081": {
+   "filename": "frame-r-004646-3-0081.fits.bz2",
+   "bytes": 3133162,
+   "sha256": "ff13054dcd440c1ca1d8f34bfeb6357f9197b20290ac3269a5b174a813c387ed",
+   "source_last_modified": "Wed, 20 Jun 2012 19:10:01 GMT",
+   "first_recorded_utc": "2026-11-08T22:01:14Z"
+  },
+  "sdss_psfield_005398_5_0022": {
+   "filename": "psField-005398-5-0022.fit",
+   "bytes": 408960,
+   "sha256": "638d26d3c2ec68d3c6e23021f0af233ad47bab73b436cfb0ce6ba74f79d43859",
+   "source_last_modified": "Tue, 19 May 2009 16:05:02 GMT",
+   "first_recorded_utc": "2026-11-08T22:03:04Z"
+  },
+  "sdss_psfield_001738_1_0030": {
+   "filename": "psField-001738-1-0030.fit",
+   "bytes": 311040,
+   "sha256": "db7bf08d61676a5c9a92e87a8470a76177907a79faa35c585fbadf9ae4e1e42f",
+   "source_last_modified": "Tue, 12 May 2009 05:25:00 GMT",
+   "first_recorded_utc": "2026-11-08T22:03:05Z"
+  },
+  "sdss_psfield_002566_6_0065": {
+   "filename": "psField-002566-6-0065.fit",
+   "bytes": 463680,
+   "sha256": "9f451062143fe1d87933edf4e6499fc1e86749ef0b0384e0d95d83773263abf3",
+   "source_last_modified": "Tue, 12 May 2009 22:56:15 GMT",
+   "first_recorded_utc": "2026-11-08T22:03:05Z"
+  },
+  "sdss_psfield_002507_6_0039": {
+   "filename": "psField-002507-6-0039.fit",
+   "bytes": 463680,
+   "sha256": "758941b8f020075fd665f454f9b49bc6f4d734555b24cceaa59340150d560b71",
+   "source_last_modified": "Tue, 12 May 2009 22:52:34 GMT",
+   "first_recorded_utc": "2026-11-08T22:03:18Z"
+  },
+  "sdss_psfield_002507_6_0040": {
+   "filename": "psField-002507-6-0040.fit",
+   "bytes": 463680,
+   "sha256": "094dd1f3c4052b49d5233366dcc933e6062f2d8b3aa3b3bcc7cfc938d62dd88e",
+   "source_last_modified": "Tue, 12 May 2009 22:52:34 GMT",
+   "first_recorded_utc": "2026-11-08T22:03:18Z"
+  },
+  "sdss_psfield_002566_6_0064": {
+   "filename": "psField-002566-6-0064.fit",
+   "bytes": 463680,
+   "sha256": "3b1bd89b628963fa3d88d53a3b0d8c87147618d82b9bb5734e1c8e54933106f6",
+   "source_last_modified": "Tue, 12 May 2009 22:56:15 GMT",
+   "first_recorded_utc": "2026-11-08T22:03:19Z"
+  },
+  "sdss_frame_r_002507_6_0040": {
+   "filename": "frame-r-002507-6-0040.fits.bz2",
+   "bytes": 3411492,
+   "sha256": "24c14958bb088edcad584fe9b0ead8e37b1521778bce7db70b8bf63c1540a915",
+   "source_last_modified": "Wed, 13 Jun 2012 12:39:18 GMT",
+   "first_recorded_utc": "2026-11-08T22:03:52Z"
+  },
+  "sdss_frame_r_002566_6_0065": {
+   "filename": "frame-r-002566-6-0065.fits.bz2",
+   "bytes": 3375857,
+   "sha256": "bdf6e56468cf822fd77ff1b1cdd09b588102bbbc46e0a5e4fdc03ff011963fcb",
+   "source_last_modified": "Wed, 13 Jun 2012 13:22:04 GMT",
+   "first_recorded_utc": "2026-11-08T22:04:34Z"
+  },
+  "sdss_frame_r_002507_6_0039": {
+   "filename": "frame-r-002507-6-0039.fits.bz2",
+   "bytes": 3432472,
+   "sha256": "dc2af8ca302f0aa8cf5f05395867de5dfc20457d0e1e4e91b22db63ac2c287c6",
+   "source_last_modified": "Wed, 13 Jun 2012 12:39:02 GMT",
+   "first_recorded_utc": "2026-11-08T22:04:35Z"
+  },
+  "sdss_frame_r_005398_5_0022": {
+   "filename": "frame-r-005398-5-0022.fits.bz2",
+   "bytes": 3350790,
+   "sha256": "c2b6b623b78e615b21e5085b2336088ea40045c442b2ea3f36a18eff7d95727c",
+   "source_last_modified": "Sun, 24 Jun 2012 09:11:06 GMT",
+   "first_recorded_utc": "2026-11-08T22:04:36Z"
+  }
+ }
+}

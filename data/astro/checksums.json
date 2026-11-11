@@ -1,0 +1,97 @@
+{
+ "schema": 1,
+ "note": "sha256 of every file fetched by data/astro/fetch.py, measured on 2026-11-07 from the hosts named in results/astro/data_access.md. fetch.py verifies against this file and records a new entry on first download of an unlisted key.",
+ "files": {
+  "sdss_frame_r": {
+   "filename": "frame-r-002583-2-0136.fits.bz2",
+   "bytes": 3524824,
+   "sha256": "9129b6c6779ad8155741998e333e0f69395226aa9fc425dc9933f9f6f53ec04c",
+   "source_last_modified": "Wed, 13 Jun 2012 12:12:49 GMT",
+   "first_recorded_utc": "2026-11-07"
+  },
+  "sdss_psfield": {
+   "filename": "psField-002583-2-0136.fit",
+   "bytes": 414720,
+   "sha256": "3d24d270c12dcd8429357a81433d0151d3a6e8739401b18273d4bfc206bcd7bd",
+   "source_last_modified": "Wed, 13 May 2009 05:43:44 GMT",
+   "first_recorded_utc": "2026-11-07"
+  },
+  "sdss_photofield": {
+   "filename": "photoField-002583-2.fits",
+   "bytes": 650880,
+   "sha256": "052132367a8faaee18160b71c3a0beef423259df7b9218c313d564f1d5f6e69e",
+   "source_last_modified": "Fri, 01 Nov 2013 02:48:21 GMT",
+   "first_recorded_utc": "2026-11-07"
+  },
+  "sdss_frame_g": {
+   "filename": "frame-g-002583-2-0136.fits.bz2",
+   "bytes": 3197457,
+   "sha256": "e543a3ff3d7214f503e3d2ad43f5c4dd80b97a8ff0746fb63b7d203093dcad2a",
+   "source_last_modified": "Wed, 13 Jun 2012 12:12:46 GMT",
+   "first_recorded_utc": "2026-11-07"
+  },
+  "sdss_frame_i": {
+   "filename": "frame-i-002583-2-0136.fits.bz2",
+   "bytes": 3660448,
+   "sha256": "f10681cc441903b124e7597d84f0bcbc4cf60332e9fa6cfe57def36e79569273",
+   "source_last_modified": "Wed, 13 Jun 2012 12:12:52 GMT",
+   "first_recorded_utc": "2026-11-07"
+  },
+  "hugs_ngc7089_meth1": {
+   "filename": "hlsp_hugs_hst_wfc3-uvis-acs-wfc_ngc7089_multi_v1_catalog-meth1.txt",
+   "bytes": 106805615,
+   "sha256": "4a96ae437122468785200570dd9121f4b677ec6ed0200e65a687babcf5b58f49",
+   "source_last_modified": "Fri, 29 Jun 2018 08:54:25 GMT",
+   "first_recorded_utc": "2026-11-07"
+  },
+  "hugs_ngc7089_meth2": {
+   "filename": "hlsp_hugs_hst_wfc3-uvis-acs-wfc_ngc7089_multi_v1_catalog-meth2.txt",
+   "bytes": 106805615,
+   "sha256": "19b602780a25fb03d9eb5167aa75e02386d977bb175dd8ed7db3b80918e84dc2",
+   "source_last_modified": "Fri, 29 Jun 2018 08:54:01 GMT",
+   "first_recorded_utc": "2026-11-07"
+  }
+ },
+ "derived": {
+  "frame_r_decompressed": {
+   "bytes": 12447360,
+   "sha256": "09ca40d8f5e7254a0c3c152427b63bd97169a48edc882f4aa18f11412e8ace9f",
+   "note": "bunzip2 of sdss_frame_r; byte-identical to the frame-r file shipped in the public repository named multiband_pcat (cmp)"
+  },
+  "frame_g_decompressed": {
+   "bytes": 12447360,
+   "sha256": "8e14e7e77bcabc50dc9c9fad848ac79e4adf7184a36816f0de3b4dc6bc4ca1dc",
+   "note": "byte-identical to the frame-g file shipped in the repository named multiband_pcat (cmp)"
+  },
+  "frame_i_decompressed": {
+   "bytes": 12447360,
+   "sha256": "3dcf1691403ccc3f1635f981b8512c3ae0d85cbbd86a3a5ef95a77def91fceae",
+   "note": "byte-identical to the frame-i file shipped in the repository named multiband_pcat (cmp)"
+  },
+  "patch_x310_y630_stats": {
+   "min": 168.99556798399556,
+   "median": 309.97809914610434,
+   "mean": 442.7628828767117,
+   "max": 26861.10739265716,
+   "note": "DN statistics of extract-patch output (frame/cal + interpolated sky), rows 630..729, columns 310..409, 0-based"
+  }
+ },
+ "shipped_inputs": {
+  "note": "four small text files shipped in the public git repository named lion (not in this repo); fetched by `fetch.py shipped` with ASTRO_LION_GIT_URL set. Same bytes are in the repository named multiband_pcat under Data/sdss.0921/ (cmp).",
+  "commit": "07be01f39dfa6995eba51bf62e6dc63550192645",
+  "commit_note": "last commit dated 2021-01-13, before a burst of generic-message commits dated 2026-09-08; the four files are byte-identical at the commit that first added them (2018-06-18), at this commit and at the 2026 HEAD (5f0f3257490a351dc9ce1745aac17b16383ff0f3)",
+  "files": {
+   "Data/sdss0921_cntp.txt": {"bytes": 250000, "sha256": "25f0b48840775c2c125428e6841bfca386e21a3fd28816e9303fbe98851c3401", "meaning": "100x100 raw counts (bias included), row-major, rows = frame rows"},
+   "Data/sdss0921_pixl.txt": {"bytes": 21, "sha256": "743b504e92f7c63b7ac5e6b07ce85563ac6282de5ef3a204c1569c8eb8f78679", "meaning": "line 1: width height nbands; line 2: bias gain (1044. 4.62)"},
+   "Data/sdss0921_psfn.txt": {"bytes": 394210, "sha256": "d25f19a77d9d5fea80fd5a8033e24a57745db9e687f9fdb0b2a144e4034f900b", "meaning": "line 1: stamp size, oversampling (25 5); then a 125x125 array"},
+   "Data/sdss0921_true.txt": {"bytes": 453659, "sha256": "17da49705e1abbe49061ddcb9f9e79517f3af12cc5e424acd20db279cdbe6214", "meaning": "6048 rows: x y flux in patch pixels / SDSS counts; mag = 22.5 - 2.5 log10(flux * 0.00546689)"}
+  }
+ },
+ "references_read": {
+  "note": "files read to write results/astro/m2_field_spec.md; not fetched by fetch.py (arXiv may re-render these on a new version, so they are not verified)",
+  "arxiv_1703.01303_v2_pdf": {"bytes": 12661063, "sha256": "0ad4554a2c9f27f190d069fb3e01228195493b99b3501d4ecc5507e84f796f97"},
+  "arxiv_1703.01303_v2_source": {"bytes": 6293837, "sha256": "4701b8b9fa77c31112b2614d0dcc1be9d8f1bc09aa3b6581e97f74edccccf801"},
+  "arxiv_1907.04929_v2_pdf": {"bytes": 3837135, "sha256": "b4cb52b9760f1e73cd08de4592fc626b68b97f87c90db3f6172b12fcca039541"},
+  "arxiv_1907.04929_v2_source": {"bytes": 2670255, "sha256": "a4b7d5806927cbd47238f7043e0484c8f828a4ad4733ef3cc25f80342cc18c0c"}
+ }
+}

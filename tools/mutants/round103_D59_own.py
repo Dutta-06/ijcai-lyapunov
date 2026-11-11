@@ -1,0 +1,20 @@
+# (id, what, old, new, k): single-point mutants of exp_moving_width.py — round 103's new code (a2_ulps, a2_exit, a2_lemma_scan,
+# mirror_asym and its line, the held-run, exit and scan lines, the renamed pair label).
+M = [
+ ('X00', 'control', 'NULL_TOL = 1e-8 ', 'NULL_TOL = 1e-8 ', 0),
+ ('Y01', 'ulps: the spacing of 1', "    u = float(np.spacing(C_A))\n", "    u = float(np.spacing(1.0))\n", 0),
+ ('Y02', 'ulps: the zero without interpolation', "kz = next((k + v[k] / (v[k] - v[k + 1]) for k in range(kmax)", "kz = next((k for k in range(kmax)", 0),
+ ('Y03', 'ulps: the farthest sample', "    ic = int(np.argmin(np.abs(XS - C_A)))", "    ic = int(np.argmax(np.abs(XS - C_A)))", 0),
+ ('Y04', 'exit: an implicit method', "z0, method='DOP853', rtol=1e-10", "z0, method='Radau', rtol=1e-10", 0),
+ ('Y05', 'exit: the level 10⁻⁶', "def a2_exit(ratio, wmul, sym=False, level=1e-2, smax=1.0):", "def a2_exit(ratio, wmul, sym=False, level=1e-6, smax=1.0):", 0),
+ ('Y06', "exit: sym on A's samples", "    xs, c0 = (d * np.arange(-(XS.size // 2), XS.size // 2 + 1), 0.0) if sym else (XS, C_A)\n    K = MW.BumpsCW(xs, S0)\n    f = A_A", "    xs, c0 = (XS, C_A)\n    K = MW.BumpsCW(xs, S0)\n    f = A_A", 0),
+ ('Y07', 'scan: the ±1 term with ±2', "rows.append((q, float(t[k == 0].sum()), float(t[np.abs(k) == 1].sum()), float(t.sum()), wv / A_A))", "rows.append((q, float(t[k == 0].sum()), float(t[np.abs(k) <= 2].sum()), float(t.sum()), wv / A_A))", 0),
+ ('Y08', 'scan: the least-squares w without the normalisation', "float(np.sum(f * P) / np.sum(P * P))", "float(np.sum(f * P))", 0),
+ ('Y09', 'scan: σ = (σ/h)·σ*', "            sg = q * d\n", "            sg = q * ss\n", 0),
+ ('Y10', 'mirror: without the σ difference', "max(abs(th[i, 0] - c0 + th[j, 0] - c0), abs(abs(th[i, 1]) - abs(th[j, 1])), abs(w[i] - w[j]))", "max(abs(th[i, 0] - c0 + th[j, 0] - c0), abs(w[i] - w[j]))", 0),
+ ('Y11', 'mirror: the mean for the largest', "    return float(max(min(", "    return float(np.mean(min(", 0),
+ ('Y12', 'mirror line: asymmetric targets too', "    sym = lambda r: abs(r['cs'][0] + r['cs'][1]) < 1e-12 and r['ss'][0] == r['ss'][1] and r['As'][0] == r['As'][1]", "    sym = lambda r: True", 0),
+ ('Y13', 'mirror line: HLL left out', "    v += [mirror_asym(x['theta'], x['w']) for r in (HLL", "    v += [0.0 for r in (HLL", 0),
+ ('Y14', 'pair label back', "return 'coinciding pair' if fit else 'coinciding pair off the features'", "return 'coinciding pair' if fit else 'null cluster'", 0),
+ ('Y15', "exit line: the symmetric run on A's samples", "ex = [(wm, a2_exit(0.25, wm), a2_exit(0.25, wm, sym=True)) for wm in (3.0, 5.0)]", "ex = [(wm, a2_exit(0.25, wm), a2_exit(0.25, wm)) for wm in (3.0, 5.0)]", 0),
+]

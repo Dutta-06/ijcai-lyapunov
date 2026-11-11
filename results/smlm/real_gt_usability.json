@@ -1,0 +1,179 @@
+{
+ "heil": {
+  "frames": 20000,
+  "shape": [
+   117,
+   118
+  ],
+  "median_adu": 276.0,
+  "p99_9_adu": 1038.0,
+  "table_rows": 517370,
+  "locs_per_frame": 25.8685,
+  "median_sigma_nm": 149.97515532063102,
+  "median_photons": 938.6715919562729,
+  "median_uncertainty_nm": 11.791692153169132,
+  "rings_matched_filter_above_percentile_95": {
+   "rings": 647,
+   "radius_nm_q05_25_50_75_95": [
+    78.4,
+    84.0,
+    87.1,
+    89.3,
+    91.7
+   ],
+   "locs_in_annulus_median": 474.0
+  },
+  "rings_matched_filter_above_percentile_99": {
+   "rings": 157,
+   "radius_nm_q05_25_50_75_95": [
+    77.8,
+    83.6,
+    86.4,
+    88.3,
+    91.3
+   ],
+   "locs_in_annulus_median": 572.0
+  },
+  "picasso_R0_frames_1000_1199": {
+   "locs": 6497,
+   "per_frame": 32.485
+  }
+ },
+ "nup96": {
+  "fov17": {
+   "frames_in_prefix": 1055,
+   "shape": [
+    419,
+    419
+   ],
+   "median_adu": 323.0,
+   "meta": {
+    "ROI": "962-818-419-419",
+    "Exposure-ms": 10,
+    "Camera": "Camera",
+    "Camera-Name": "PMPCIECam00",
+    "Camera-ChipName": "CIS2020F",
+    "Camera-Gain": "1",
+    "Camera-Offset": "0",
+    "Camera-ReadoutRate": "250MHz 16bit",
+    "Camera-ActualInterval-ms": "50.6700",
+    "PixelSizeUm": null,
+    "HamamatsuHam_DCAM-CameraName": null,
+    "Binning": 1,
+    "Laser 642nm-Power Setpoint": "1200.0000"
+   },
+   "table_frames": 30000,
+   "table_rows": 643447,
+   "table_locs_in_prefix_frames": 50904,
+   "table_x_nm_over_x_pix": 106.0,
+   "median_photons": 2302.1,
+   "median_crlb_y_nm": 6.9402,
+   "rings_from_frames_gt_1056_matched_filter_above_percentile_90": {
+    "rings": 6118,
+    "radius_nm_q05_25_50_75_95": [
+     37.1,
+     45.2,
+     51.4,
+     57.1,
+     63.2
+    ],
+    "locs_in_annulus_median": 77.0
+   },
+   "rings_from_frames_gt_1056_matched_filter_above_percentile_97": {
+    "rings": 2150,
+    "radius_nm_q05_25_50_75_95": [
+     37.6,
+     45.5,
+     51.5,
+     56.4,
+     61.7
+    ],
+    "locs_in_annulus_median": 119.0
+   },
+   "picasso_R0_frames_400_499": {
+    "locs": 1871,
+    "per_frame": 18.71,
+    "fraction_within_150nm_of_table_loc_same_frame": 0.9422768572955639,
+    "smap_table_locs_per_frame_same_frames": 41.13
+   }
+  },
+  "fov18": {
+   "frames_in_prefix": 1055,
+   "shape": [
+    419,
+    419
+   ],
+   "median_adu": 317.0,
+   "meta": {
+    "ROI": "962-818-419-419",
+    "Exposure-ms": 10,
+    "Camera": "Camera",
+    "Camera-Name": "PMPCIECam00",
+    "Camera-ChipName": "CIS2020F",
+    "Camera-Gain": "1",
+    "Camera-Offset": "0",
+    "Camera-ReadoutRate": "250MHz 16bit",
+    "Camera-ActualInterval-ms": "50.2000",
+    "PixelSizeUm": null,
+    "HamamatsuHam_DCAM-CameraName": null,
+    "Binning": 1,
+    "Laser 642nm-Power Setpoint": "1200.0000"
+   },
+   "table_frames": 30000,
+   "table_rows": 637989,
+   "table_locs_in_prefix_frames": 50405,
+   "table_x_nm_over_x_pix": 106.0,
+   "median_photons": 2274.2,
+   "median_crlb_y_nm": 6.84365,
+   "rings_from_frames_gt_1056_matched_filter_above_percentile_90": {
+    "rings": 3819,
+    "radius_nm_q05_25_50_75_95": [
+     37.6,
+     45.7,
+     51.0,
+     55.2,
+     60.8
+    ],
+    "locs_in_annulus_median": 110.0
+   },
+   "rings_from_frames_gt_1056_matched_filter_above_percentile_97": {
+    "rings": 1729,
+    "radius_nm_q05_25_50_75_95": [
+     38.8,
+     46.9,
+     51.6,
+     55.5,
+     60.1
+    ],
+    "locs_in_annulus_median": 150.0
+   }
+  }
+ },
+ "simflux": {
+  "frames_in_prefix": 923,
+  "shape": [
+   400,
+   400
+  ],
+  "median_adu": 103.0,
+  "meta": {
+   "ROI": "952-772-400-400",
+   "Exposure-ms": 10.017203007518797,
+   "Camera": "HamamatsuHam_DCAM",
+   "Camera-Name": null,
+   "Camera-ChipName": null,
+   "Camera-Gain": null,
+   "Camera-Offset": null,
+   "Camera-ReadoutRate": null,
+   "Camera-ActualInterval-ms": null,
+   "PixelSizeUm": 0,
+   "HamamatsuHam_DCAM-CameraName": "C11440-22C",
+   "Binning": "1x1",
+   "Laser 642nm-Power Setpoint": null
+  },
+  "p99_99_adu": 148.0,
+  "picasso_frames_700_799_min_net_gradient_500_locs_per_frame": 7.25,
+  "picasso_frames_700_799_min_net_gradient_1500_locs_per_frame": 0.16,
+  "picasso_frames_700_799_min_net_gradient_5000_locs_per_frame": 0.0
+ }
+}

@@ -1,0 +1,49 @@
+{
+ "config": {
+  "dev_F": 0.561546,
+  "kappa": 2.0,
+  "r_ex": 1.2,
+  "sigma_b": 3.0
+ },
+ "default": [
+  5.0,
+  1.2,
+  5.0
+ ],
+ "dev_keys": "9eb3f299a5299d6d074be2aed729c1609b322f79283669d812d6ab360a9dc460",
+ "files": {
+  "experiments/astro_common.py": "a25d698f21adfc0a15647477715bb64238c981900470310eabc8dbbd86e5d1da",
+  "experiments/exp_astro_baselines.py": "4c5e7451247d73857b77b7d521c83ae682f87fc58ea9c0ec98d0177c04061b32",
+  "results/astro/baseline_catalogs.npz": "071f5b8f873c84eb35ce02c56f427ddb98447e7d8b164be33b212506d4649b00",
+  "results/astro/baseline_catalogs_second.npz": "2eed2f5fcc6d9e3550a8ffdef8854e90897993e68e925dfb4bcf395a32f90a01",
+  "src/core/imaging.py": "23ec17ea1e85f43161b4d6262d5555c37d9ddccfd6c3e13d880ba3f51f5e5be6"
+ },
+ "frozen_code": "c4a5cb7a4bf23d17b3db6d9b211f8c3e11690c566af51ce0b529630046774502",
+ "tests": [
+  [
+   310,
+   630
+  ],
+  [
+   310,
+   730
+  ],
+  [
+   360,
+   1040
+  ],
+  [
+   100,
+   1100
+  ]
+ ],
+ "truth": "d54ebdd9c511da875265f9c77ccdf50ad8a34d4a13fa6cb2f959462c4b7007d6",
+ "truth_second": {
+  "m53": "7a31394d4f7523703f7085cb1315761b941e4f38fd1e77805411713ce374881e",
+  "m92": "6ae0284af6b9b6c58af8fc422739621a3ff26ff2e2342b4365263e8156375f11"
+ },
+ "tuned_baselines": {
+  "crowdsource": "crowdsource|snr5|ff0|qf0|spinf",
+  "photutils": "photutils_ext_all_local_i6"
+ }
+}

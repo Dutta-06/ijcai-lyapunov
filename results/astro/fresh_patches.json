@@ -1,0 +1,71 @@
+{
+ "clusters": {
+  "ngc5272": {
+   "camcol": 3,
+   "date_obs": "2004-05-22",
+   "densities": [
+    0.1283
+   ],
+   "field": 81,
+   "fwhm_px": [
+    2.8135
+   ],
+   "patches": [
+    [
+     1870,
+     820
+    ]
+   ],
+   "prefix": "patch_r_004646_3_0081",
+   "root": "/home/user/astro_data_4",
+   "run": 4646,
+   "shifts": [
+    [
+     0.1359,
+     -0.0259
+    ]
+   ],
+   "title": "M3 (NGC 5272), SDSS run 4646 camcol 3 field 81",
+   "truth": "truth_hugs_ngc5272_meth1.npz"
+  },
+  "ngc7078": {
+   "camcol": 6,
+   "date_obs": "2001-08-23",
+   "densities": [
+    0.0783,
+    0.1341
+   ],
+   "field": 39,
+   "fwhm_px": [
+    3.1765,
+    3.1765
+   ],
+   "patches": [
+    [
+     640,
+     1180
+    ],
+    [
+     920,
+     1180
+    ]
+   ],
+   "prefix": "patch_r_002507_6_0039",
+   "root": "/home/user/astro_data_4",
+   "run": 2507,
+   "shifts": [
+    [
+     0.3635,
+     -0.0569
+    ],
+    [
+     0.3764,
+     -0.1199
+    ]
+   ],
+   "title": "M15 (NGC 7078), SDSS run 2507 camcol 6 field 39",
+   "truth": "truth_hugs_ngc7078_meth1.npz"
+  }
+ },
+ "note": "registry of the fresh clusters (experiments/astro_fresh.py registry); root is $ASTRO_DATA_4 at the time of writing"
+}

@@ -1,0 +1,54 @@
+photoRunAll-dr17: 765 runs (rerun 301)
+cluster  name           RA      Dec   runs | best field: run camcol field | seeing"  footprint-fraction(F606W<22)  windows(0.03-0.15)  density-range
+ngc1261  NGC 1261   48.068  -55.216      0 |
+ngc1851  NGC 1851   78.528  -40.047      0 |
+ngc2298  NGC 2298  102.248  -36.005      0 |
+ngc2808  NGC 2808  138.013  -64.864      0 |
+ngc3201  NGC 3201  154.403  -46.412      0 |
+ngc4590  M 68      189.867  -26.744      0 |
+ngc4833  NGC 4833  194.891  -70.876      0 |
+ngc5024  M 53      198.230  +18.168      7 |  5390 6  162 | 1.317  1.00    929  0.03-0.15 | psp_status 0 psf_nstar(r) 14 sat 52900
+ngc5053  NGC 5053  199.113  +17.700      4 |  5390 5  168 | 1.204  0.95      0  - | psp_status 0 psf_nstar(r) 29 sat 20028
+ngc5272  M 3       205.548  +28.377      2 |  4646 3   81 | 1.322  0.94    199  0.07-0.15 | psp_status 2 psf_nstar(r) 5 sat 47306
+ngc5286  NGC 5286  206.612  -51.374      0 |
+ngc5466  NGC 5466  211.364  +28.534      4 |  4623 1  324 | 1.646  1.00     71  0.03-0.03 | psp_status 0 psf_nstar(r) 28 sat 49506
+ngc5904  M 5       229.638   +2.081      4 |  1458 4  700 | 1.135  1.00    581  0.06-0.15 | psp_status 3 psf_nstar(r) 0 sat 49074
+ngc5927  NGC 5927  232.003  -50.673      0 |
+ngc5986  NGC 5986  236.512  -37.786      0 |
+ngc6093  M 80      244.260  -22.976      0 |
+ngc6101  NGC 6101  246.451  -72.202      0 |
+ngc6121  M 4       245.897  -26.526      0 |
+ngc6144  NGC 6144  246.808  -26.023      0 |
+ngc6171  M 107     248.133  -13.054      0 |
+ngc6205  M 13      250.423  +36.461      5 |  3226 5  127 | 1.575  0.69     34  0.10-0.15 | psp_status 2 psf_nstar(r) 4 sat 20028
+ngc6218  M 12      251.809   -1.949      0 |
+ngc6254  M 10      254.288   -4.100      3 |  5391 5  185 | 1.268  0.50    286  0.06-0.15 | psp_status 2 psf_nstar(r) 5 sat 20028
+ngc6304  NGC 6304  258.634  -29.462      0 |
+ngc6341  M 92      259.281  +43.136      6 |  4682 6  208 | 1.345  1.00    716  0.06-0.15 | psp_status 0 psf_nstar(r) 16 sat 52900
+ngc6352  NGC 6352  261.371  -48.422      0 |
+ngc6362  NGC 6362  262.979  -67.048      0 |
+ngc6366  NGC 6366  261.934   -5.080      0 |
+ngc6388  NGC 6388  264.073  -44.736      0 |
+ngc6397  NGC 6397  265.175  -53.674      0 |
+ngc6441  NGC 6441  267.554  -37.051      0 |
+ngc6496  NGC 6496  269.765  -44.266      0 |
+ngc6535  NGC 6535  270.960   -0.298      2 |  1463 3   61 | 1.558  1.00     87  0.03-0.04 | psp_status 3 psf_nstar(r) 0 sat 53736
+ngc6541  NGC 6541  272.010  -43.715      0 |
+ngc6584  NGC 6584  274.657  -52.216      0 |
+ngc6624  NGC 6624  275.919  -30.361      0 |
+ngc6637  M 69      277.846  -32.348      0 |
+ngc6652  NGC 6652  278.940  -32.991      0 |
+ngc6656  M 22      279.100  -23.905      0 |
+ngc6681  M 70      280.803  -32.292      0 |
+ngc6715  M 54      283.764  -30.480      0 |
+ngc6717  NGC 6717  283.775  -22.701      0 |
+ngc6723  NGC 6723  284.888  -36.632      0 |
+ngc6752  NGC 6752  287.717  -59.985      0 |
+ngc6779  M 56      289.148  +30.183      0 |
+ngc6809  M 55      294.999  -30.965      0 |
+ngc6838  M 71      298.444  +18.779      2 |  6895 3   52 | 1.355  0.52     82  0.03-0.04 | psp_status 3 psf_nstar(r) 0 sat 47306
+ngc6934  NGC 6934  308.547   +7.404      2 |  1738 1   29 | 1.027  0.79    452  0.03-0.15 | psp_status 2 psf_nstar(r) 1 sat 49506
+ngc6981  M 72      313.365  -12.537      1 | (no field box of these runs holds >= 2% of the footprint: the cluster falls in a camcol gap, or the photoField is not on disk)
+ngc7078  M 15      322.493  +12.167      4 |  1749 6  141 | 1.744  1.00    338  0.07-0.15 | psp_status 2 psf_nstar(r) 3 sat 52900
+ngc7089  M 2       323.363   -0.823     32 | (the reference: the benchmark frame is run 2583 camcol 2 field 136; not part of the test-set selection)
+ngc7099  M 30      325.092  -23.180      0 |

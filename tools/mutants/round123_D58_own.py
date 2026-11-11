@@ -1,0 +1,55 @@
+# (id, what, old, new, k): single-point mutants of exp_width_mismatch.py — round 123's revision of A6X (D3dr-1 … -7): the trigger at
+# each order's smallest K and the transient carried there, the per-rule verdict and its checks (decreasing with the input bound,
+# the resolution, the transient's check with B > 0), the known cases (A6X_RULES, `part_A6X`'s merge), the proved rules' bias ratio,
+# `d61_step`'s assertion, and the D section's tier (the referee's X12); the referee's surviving X13–X15, X19–X24, X27, X35, X36 recast.
+M = [
+ ('J00', 'control', "    return q > 0 and q ** K > 10.0 ** (6 - digits)", "    return q > 0 and q ** K > 10.0 ** (6 - digits)", 0),
+ # the trigger and the transient at each order's smallest K (D3dr-1)
+ ('J01', "the trigger at A6's last K for every order", "rz.append(a6x_resolvable(q, Ks[-(n + 1)]) and", "rz.append(a6x_resolvable(q) and", 0),
+ ('J02', "the trigger at the extended fit's smallest K", "rz.append(a6x_resolvable(q, Ks[-(n + 1)]) and", "rz.append(a6x_resolvable(q, Ks[-(n + 2)]) and", 0),
+ ('J03', 'the transient replacing the top power (no extra K)', "c, b_ = order(R, dR, Ks[-(n + 2):], bas + [qK])", "c, b_ = order(R, dR, Ks[-(n + 1):], bas[:-1] + [qK])", 0),
+ ('J04', 'the transient never carried', "                if rz[-1]:                                              # Bq^K", "                if False:                                              # Bq^K", 0),
+ ('J05', 'the eight-term order never carries it', "and n + 2 <= len(Ks))", "and n + 2 < len(Ks))", 0),
+ ('J06', 'the printed K: the power fit\'s', "kz.append(Ks[-(n + 2)] if rz[-1] else Ks[-(n + 1)])", "kz.append(Ks[-(n + 1)])", 0),
+ ('J07', 'resolvable: >= (X13)', "    return q > 0 and q ** K > 10.0 ** (6 - digits)", "    return q > 0 and q ** K >= 10.0 ** (6 - digits)", 0),
+ ('J08', 'resolvable: margin 10^5 (X14, q > 0.739)', "q ** K > 10.0 ** (6 - digits)", "q ** K > 10.0 ** (5 - digits)", 0),
+ ('J09', 'resolvable: default K = 120 (X15)', "    K = A6_K[-1] if K is None else K", "    K = A6_K[-2] if K is None else K", 0),
+ ('J10', 'A6X_DIGITS = 27', "A6X_DIGITS = 26 ", "A6X_DIGITS = 27 ", 0),
+ # the orders' checks (D3dr-2, -3)
+ ('J11', 'decreasing: <= (X19)', "or abs(y) < abs(x) for x, y, e_ in", "or abs(y) <= abs(x) for x, y, e_ in", 0),
+ ('J12', 'decreasing: the last pair unchecked (X20)', "for x, y, e_ in zip(o, o[1:], b[1:]))", "for x, y, e_ in zip(o[:-1], o[1:-1], b[1:-1]))", 0),
+ ('J13', 'decreasing: no convergence at the input bound', "    return all(abs(y) <= e_ or abs(y) < abs(x)", "    return all(abs(y) < abs(x)", 0),
+ ('J14', 'A6X_CONS = 1 (X23)', "A6X_CONS = 10 ", "A6X_CONS = 1 ", 0),
+ ('J15', 'A6X_CONS = 100 (X22)', "A6X_CONS = 10 ", "A6X_CONS = 100 ", 0),
+ ('J16', 'resolution against the change two back (X24)', "    return max(A6X_CONS * abs(o[-1] - o[-2]), b[-1])", "    return max(A6X_CONS * abs(o[-1] - o[-3]), b[-1])", 0),
+ ('J17', "resolution: the input bound dropped", "    return max(A6X_CONS * abs(o[-1] - o[-2]), b[-1])", "    return A6X_CONS * abs(o[-1] - o[-2])", 0),
+ ('J18', 'the verdict on the power-only orders', "z.update(mono=a6x_decreasing(ow, ob),", "z.update(mono=a6x_decreasing(po, pb),", 0),
+ ('J19', 'the power-only flag on the transient orders', "pmono=a6x_decreasing(po, pb),", "pmono=a6x_decreasing(ow, ob),", 0),
+ ('J20', 'the orders\' input bound zero', "                ob.append(float(b_ * tx))", "                ob.append(0.0)", 0),
+ ('J21', 'the rounding bound ten times larger', "        return Fr(1, 2 * 10 ** (A6X_DIGITS - 1)) / abs(", "        return Fr(1, 2 * 10 ** (A6X_DIGITS - 2)) / abs(", 0),
+ ('J22', 'the bound without |w|', "sum(abs(w_) * dR[K] for w_, K in zip(w, Ks))", "abs(sum(w_ * dR[K] for w_, K in zip(w, Ks)))", 0),
+ ('J23', "the bound from e0's rounding alone", "* (rel(y['e0']) + rel(y['e1'])) for y in ys}", "* rel(y['e0']) for y in ys}", 0),
+ ('J24', "the weights of the second coefficient", "[Fr(int(j == 0)) for j in range(len(Ks))]", "[Fr(int(j == 1)) for j in range(len(Ks))]", 0),
+ # the per-rule verdict (D3dr-2)
+ ('J25', 'passing: decreasing or consistent', "        ok_ = [z for z in nofit if z['mono'] and z['cons']]", "        ok_ = [z for z in nofit if z['mono'] or z['cons']]", 0),
+ ('J26', 'the known cases by decrease alone', "            np_ = sum(1 for z in kp if z['mono'] and z['cons'])", "            np_ = sum(1 for z in kp if z['mono'])", 0),
+ ('J27', 'the negative result without a resolvable transient', "        neg = [z for z in nofit if any(z['rz']) and not z['mono']]", "        neg = [z for z in nofit if not z['mono']]", 0),
+ ('J28', 'the positive result without the power-only stall', "and z['mono'] and not z['pmono']]", "and z['mono']]", 0),
+ # the transient's check (D3dr-4)
+ ('J29', 'B > 0 dropped (X36)', "    return (tr['B'] > 0 and tr['flat'] < A6X_FLAT", "    return (tr['flat'] < A6X_FLAT", 0),
+ ('J30', 'A6X_FLAT = 1e-2 (X27)', "A6X_FLAT = 1e-3 ", "A6X_FLAT = 1e-2 ", 0),
+ ('J31', "the deviation against |dev5|", "abs(tr['dev']) <= max(abs(tr['dev5'] - tr['dev']), tr['bnd'])", "abs(tr['dev']) <= max(abs(tr['dev5']), tr['bnd'])", 0),
+ ('J32', "the deviation without the input bound", "abs(tr['dev']) <= max(abs(tr['dev5'] - tr['dev']), tr['bnd'])", "abs(tr['dev']) <= abs(tr['dev5'] - tr['dev'])", 0),
+ ('J33', 'the power fits\' worsening dropped', "\n            and abs(po[0]) < abs(po[1]) < abs(po[2]))", ")", 0),
+ ('J34', 'B_K at three K below the fit (40 too)', "kb = [K for K in Ks if K < Ks[-5]][-2:]", "kb = [K for K in Ks if K < Ks[-5]][-3:]", 0),
+ ('J35', "B_K at the fit's own smallest K", "kb = [K for K in Ks if K < Ks[-5]][-2:]", "kb = [K for K in Ks if K <= Ks[-5]][-2:]", 0),
+ # the known cases, the merge, the bias ratio, d61_step, the D section (D3dr-2, -6; X12)
+ ('J36', 'A6X without (1, Mercer frame)', "(2.0, 8), (1.0, 3), (2.0, 3))   # A6X", "(2.0, 8), (2.0, 3))   # A6X", 0),
+ ('J37', "merge: old's order", "    return [have[k] for k in [(r_, a6_scalings(r_)[i][0]) for r_, i in A6X_RULES] if k in have]", "    return list(have.values())", 0),
+ ('J38', 'the bias ratio from the second fit', "pb_.setdefault(z['x']['r'], []).append(z['d'][z['iL']][0])", "pb_.setdefault(z['x']['r'], []).append(z['d'][z['iL']][1])", 0),
+ ('J39', "d61_step's assertion dropped", "    assert t < 1, t\n", "", 0),
+ ('J40', "report D: V's tier printed with the branch and bound's r* (X12)", "before VA for t < {D61_RSTAR_V:.4f} with V", "before VA for t < {D61_RSTAR:.4f} with V", 0),
+ # the frame's tolerance at a non-dyadic τ/σ (X10)
+ ('J41', "A6X: the frame tolerance dropped (X10)", "        frame = abs(1 + 2 / x['r'] ** 2 - 2 / float(x['v'])) < 1 - 1e-12", "        frame = abs(1 + 2 / x['r'] ** 2 - 2 / float(x['v'])) < 1", 0),
+ ('J42', "A6X: nfast's frame tolerance dropped", "2 / float(y['v'])) < 1 - 1e-12)   # frameless fast-branch rules", "2 / float(y['v'])) < 1)   # frameless fast-branch rules", 0),
+]

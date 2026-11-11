@@ -1,0 +1,26 @@
+{
+ "ebm": {
+  "lr": 0.03,
+  "max_bins": 256
+ },
+ "ebm_id": 3,
+ "gam_spline": {
+  "n_knots": 12
+ },
+ "gam_spline_id": 1,
+ "mlp": {
+  "alpha": 0.0001,
+  "hidden": 64
+ },
+ "mlp_id": 0,
+ "nam": {
+  "h": 48,
+  "lr": 0.003,
+  "wd": 0.0
+ },
+ "nam_id": 4,
+ "xgb": {
+  "depth": 6
+ },
+ "xgb_id": 1
+}

@@ -1,0 +1,128 @@
+"""Single-point mutants of experiments/exp_mechreal.py (the real-window mechanism test: truth sources, formed sets, outcomes, the development rules, the predictions, the freeze
+gate, the report), for tools/mutants.py:
+
+    venv/bin/python tools/mutants.py --exp exp_mechreal --tests tests/test_mechreal.py --raw results/astro/mechreal_raw.npz --md results/astro/mechreal.md --out-env MECHREAL_OUT \\
+        --spec tools/mutants/wp_mechreal_own.py --extra results/synthetic/network_imaging_raw.npz --work <scratch dir> [-k "not trajectory and not flows_fit"]
+
+A tuple is (id, what, old, new[, k]): `old` replaced by `new` at its k-th occurrence. The kill criterion is the tests file alone (planted raws: no real patch is read); the md column
+(the report regenerated from the real raw) is reported besides. The numerics (`mechreal_core.py`) have their own spec, `wp_mechreal_core_own.py`.
+
+RESULT (final code, the code hashed by `mechreal_freeze.json`; run of 2026-11-10 with -k "not trajectory and not flows_fit", i.e. without the two slow tests, which read
+nothing of this script): 103 mutants, 103 killed by the tests file alone, no survivor, no anchor missing. The numerics spec `wp_mechreal_core_own.py` (whole tests file, the
+harness's raw in the slot): 43 mutants, 43 killed. An earlier pass on the code before the change of the stop of D and E had 90 of 90 and 38 of 38.
+"""
+M = [
+    # ---- interior, truth sources
+    ('I01', 'in_interior: border without the half pixel', "lo, hi = edge - 0.5, nw - 0.5 - edge", "lo, hi = edge, nw - 0.5 - edge"),
+    ('I02', 'in_interior: upper bound', "lo, hi = edge - 0.5, nw - 0.5 - edge", "lo, hi = edge - 0.5, nw - edge"),
+    ('I03', 'in_interior: y not checked', "return (c[:, 0] >= lo) & (c[:, 0] <= hi) & (c[:, 1] >= lo) & (c[:, 1] <= hi)", "return (c[:, 0] >= lo) & (c[:, 0] <= hi) & (c[:, 1] >= lo)"),
+    ('B01', 'blend_sources: faint stars kept', "keep = z >= z_faint", "keep = z >= 0.0"),
+    ('B02', 'blend_sources: unweighted centre', "cs = np.c_[np.bincount(lab, weights=z * c[:, 0], minlength=n_comp), np.bincount(lab, weights=z * c[:, 1], minlength=n_comp)] / zs[:, None]",
+     "cs = np.c_[np.bincount(lab, weights=c[:, 0], minlength=n_comp), np.bincount(lab, weights=c[:, 1], minlength=n_comp)] / np.bincount(lab, minlength=n_comp)[:, None]"),
+    ('B03', 'blend_sources: not sorted by flux', "o = np.argsort(-zs, kind='stable')\n    return cs[o], zs[o]", "o = np.arange(len(zs))\n    return cs[o], zs[o]"),
+    ('B04', 'counted_truth: strict flux limit', "return src_c[(np.asarray(src_z, float) >= 1.0) & in_interior(src_c, nw, edge)]", "return src_c[(np.asarray(src_z, float) > 1.0) & in_interior(src_c, nw, edge)]"),
+    ('B05', 'counted_truth: border sources counted', "return src_c[(np.asarray(src_z, float) >= 1.0) & in_interior(src_c, nw, edge)]", "return src_c[(np.asarray(src_z, float) >= 1.0)]"),
+    # ---- formed set, matching, outcomes
+    ('U01', 'formed_units: threshold inclusive', "f = np.flatnonzero(np.isfinite(w) & (np.abs(w) > theta))", "f = np.flatnonzero(np.isfinite(w) & (np.abs(w) >= theta))"),
+    ('U02', 'formed_units: positive units only', "f = np.flatnonzero(np.isfinite(w) & (np.abs(w) > theta))", "f = np.flatnonzero(np.isfinite(w) & (w > theta))"),
+    ('U03', 'formed_units: opposite signs merged', "near = (cdist(cf, cf) < r_merge) & (np.sign(wf)[:, None] == np.sign(wf)[None, :])", "near = (cdist(cf, cf) < r_merge)"),
+    ('U04', 'formed_units: no merge', "near = (cdist(cf, cf) < r_merge) & (np.sign(wf)[:, None] == np.sign(wf)[None, :])", "near = (cdist(cf, cf) < 0.0) & (np.sign(wf)[:, None] == np.sign(wf)[None, :])"),
+    ('U05', 'formed_units: amplitude of the merged unit is the largest', "return cm, np.bincount(lab, weights=wf, minlength=n_comp)", "return cm, np.array([wf[lab == k][np.argmax(np.abs(wf[lab == k]))] for k in range(n_comp)])"),
+    ('U06', 'formed_units: unweighted centre', "a = np.abs(wf)\n    asum", "a = np.ones(len(wf))\n    asum"),
+    ('T01', 'match_pairs: strict radius', "ok = D <= r_match", "ok = D < r_match"),
+    ('T02', 'match_pairs: not one-to-one', "r, q = linear_sum_assignment(np.where(ok, D, big))\n    return int(ok[r, q].sum())", "return int(ok.any(1).sum())"),
+    ('T03', 'match_pairs: greedy cost without the penalty', "r, q = linear_sum_assignment(np.where(ok, D, big))", "r, q = linear_sum_assignment(D)"),
+    ('C01', 'outcomes: units of the border counted', "det, wd = cm[inn], wm[inn]", "det, wd = cm, wm"),
+    ('C02', 'outcomes: F with the product', "f1 = 1.0 if kh + kt == 0 else 2.0 * tp / (kh + kt)", "f1 = 1.0 if kh + kt == 0 else tp / max(kh, kt)"),
+    ('C03', 'outcomes: empty against empty is 0', "f1 = 1.0 if kh + kt == 0 else 2.0 * tp / (kh + kt)", "f1 = 0.0 if kh + kt == 0 else 2.0 * tp / (kh + kt)"),
+    ('C04', 'outcomes: signed error reversed', "return np.array([kh, kt, abs(kh - kt), kh - kt, tp, f1,", "return np.array([kh, kt, abs(kh - kt), kt - kh, tp, f1,"),
+    ('C05', 'outcomes: negative count from all formed', "len(wm), int((wd < 0).sum()), int((wd > 0).sum()),", "len(wm), int((wm < 0).sum()), int((wd > 0).sum()),"),
+    ('C07', 'outcomes: awake units at the formed threshold', "int((np.abs(w[np.isfinite(w)]) > W_AWAKE).sum())], float)", "int((np.abs(w[np.isfinite(w)]) > theta).sum())], float)"),
+    ('C08', 'outcomes: awake threshold inclusive', "int((np.abs(w[np.isfinite(w)]) > W_AWAKE).sum())], float)", "int((np.abs(w[np.isfinite(w)]) >= W_AWAKE).sum())], float)"),
+    ('C06', 'outcomes: n_formed_all in the interior', "tp, f1, len(wm), int((wd < 0).sum())", "tp, f1, len(wd), int((wd < 0).sum())"),
+    # ---- statistics
+    ('S01', 'boot_mean: 90 % interval', "return float(x.mean()), float(np.percentile(m, 2.5)), float(np.percentile(m, 97.5))", "return float(x.mean()), float(np.percentile(m, 5.0)), float(np.percentile(m, 95.0))", 0),
+    ('S02', 'boot_mean: the median', "m = x[idx].mean(1)\n    return float(x.mean())", "m = x[idx].mean(1)\n    return float(np.median(x))"),
+    ('S03', 'boot_mean_cluster: windows resampled', "idx = rng.integers(0, len(labs), (n_boot, len(labs)))\n    m = sums[idx].sum(1) / cnts[idx].sum(1)", "idx = rng.integers(0, len(labs), (n_boot, len(labs)))\n    m = (sums / cnts)[idx].mean(1)"),
+    ('S04', 'clopper_pearson: upper bound with k', "hi = 1.0 if k == n else float(beta.ppf(1.0 - a, k + 1, n - k))", "hi = 1.0 if k == n else float(beta.ppf(1.0 - a, k, n - k + 1))"),
+    ('S05', 'clopper_pearson: lower bound', "lo = 0.0 if k == 0 else float(beta.ppf(a, k, n - k + 1))", "lo = 0.0 if k == 0 else float(beta.ppf(a, k + 1, n - k))"),
+    # ---- windows
+    ('W01', 'window_arrays: flux limit without Z_LIM', "f_lim = z_lim / scale", "f_lim = 1.0 / scale"),
+    ('W02', 'window_arrays: weights not rescaled', "return dict(y=P.highpass(d - np.median(d)) / f_lim, sw=s * f_lim,", "return dict(y=P.highpass(d - np.median(d)) / f_lim, sw=s,"),
+    ('W03', 'window_arrays: x and y origin exchanged', "d = np.asarray(dn, float)[wy:wy + nw, wx:wx + nw]", "d = np.asarray(dn, float)[wx:wx + nw, wy:wy + nw]"),
+    ('W04', 'window_arrays: no high-pass of the data', "return dict(y=P.highpass(d - np.median(d)) / f_lim,", "return dict(y=(d - np.median(d)) / f_lim,"),
+    ('W05', 'window_truth: the shift subtracted', "x = np.asarray(tr['px'], float) + shift[0] - pxy[0] - wx", "x = np.asarray(tr['px'], float) - shift[0] - pxy[0] - wx"),
+    ('W06', 'window_truth: y without the window origin', "y = np.asarray(tr['py'], float) + shift[1] - pxy[1] - wy", "y = np.asarray(tr['py'], float) + shift[1] - pxy[1]"),
+    ('W07', 'window_truth: no padding', "sel = (x >= -0.5 - PAD) & (x < nw - 0.5 + PAD) & (y >= -0.5 - PAD) & (y < nw - 0.5 + PAD) & (m < 30.0)", "sel = (x >= -0.5) & (x < nw - 0.5) & (y >= -0.5) & (y < nw - 0.5) & (m < 30.0)"),
+    ('W08', 'eligible: no bright cap', "return bool(K_MIN <= k <= K_MAX and zmax <= Z_BRIGHT), k, zmax", "return bool(K_MIN <= k <= K_MAX), k, zmax"),
+    ('W09', 'eligible: K_MIN not enforced', "return bool(K_MIN <= k <= K_MAX and zmax <= Z_BRIGHT), k, zmax", "return bool(k <= K_MAX and zmax <= Z_BRIGHT), k, zmax"),
+    ('W10', 'eligible: K_MAX not enforced', "return bool(K_MIN <= k <= K_MAX and zmax <= Z_BRIGHT), k, zmax", "return bool(K_MIN <= k and zmax <= Z_BRIGHT), k, zmax"),
+    # ---- the path and its references
+    ('F01', 'tau_of: kappa only', "return 1.0 / (float(kappa) * z_lim)", "return 1.0 / float(kappa)"),
+    ('F02', 'path_block: tau_next is the block entry', "later = taus[taus > tau]", "later = taus[taus >= taus[K - 1]] if K else taus"),
+    ('F03', 'path_block: tau_K of the first entry', "(float(taus[K - 1]) if K else 0.0)", "(float(taus[0]) if K else 0.0)"),
+    ('F04', 'path_refs: tau_mid at the cap', "tau_mid = tK + Q_MID * (tau_end - tK)", "tau_mid = tau_end"),
+    ('F05', 'path_refs: block not polished', "cp, wp, acc, _, _ = NI.polish_block(prob['P'], prob['y'], prob['sw'], c, w)", "cp, wp, acc = c, w, False"),
+    ('F06', 'agreement: set_ok is C1 alone', "g['set_ok'] = float(g['c1'] and g['c2'])", "g['set_ok'] = float(g['c1'])"),
+    ('F07', 'agreement: all_ok is the set', "g['all_ok'] = g['ok']", "g['all_ok'] = g['set_ok']"),
+    # ---- raw, grids
+    ('G01', 'grid_index: nearest without tolerance', "return i if abs(grid[i] - value) <= 1e-9 * max(abs(value), 1e-300) else -1", "return i"),
+    ('G02', 'flow_grid: arm A without tau_mid', "    if arm == 'A':\n        for k in ref_kappas:", "    if arm == 'Z':\n        for k in ref_kappas:"),
+    ('G03', 'flow_grid: early snapshots for every arm', "    if arm == 'C':\n        g += [f * tau_of(min(DEV_FLOW_KAPPAS)) for f in C_EARLY]\n    g = np.sort", "    if arm != 'Z':\n        g += [f * tau_of(min(DEV_FLOW_KAPPAS)) for f in C_EARLY]\n    g = np.sort"),
+    ('G04', 'flow_grid: duplicates kept', "return g[np.r_[True, np.diff(g) > 1e-12 * g[1:]]]", "return g"),
+    ('G05', 'flow_values: all development stops', "v = [tau_of(k) for k in DEV_FLOW_KAPPAS if k >= kappa]", "v = [tau_of(k) for k in DEV_FLOW_KAPPAS]"),
+    ('G06', 'test_flow_kappas: later stops', "return tuple(k for k in DEV_FLOW_KAPPAS if k >= fz['kappa'])", "return tuple(k for k in DEV_FLOW_KAPPAS if k <= fz['kappa'])"),
+    ('G07', 'test_steps: the whole grid', "return np.array([s for s in STEPS if s <= float(fz['steps'][arm])], float)", "return np.array([s for s in STEPS], float)"),
+    ('G15', 'step_values: beyond the budget', "return [float(s) for s in STEPS if s <= S_MAX]", "return [float(s) for s in STEPS]"),
+    ('G16', 'block_loss: without the weights', "return 0.5 * float(np.sum(prob['W'] * (prob['y'] - prob['P'].synth(", "return 0.5 * float(np.sum((prob['y'] - prob['P'].synth("),
+    ('G17', 'block_loss: not halved', "return 0.5 * float(np.sum(prob['W'] * (prob['y'] - prob['P'].synth(", "return float(np.sum(prob['W'] * (prob['y'] - prob['P'].synth("),
+    ('G08', 'save_part: write-once not enforced', "        if clash:\n            raise RuntimeError('write-once", "        if False:\n            raise RuntimeError('write-once"),
+    ('G09', 'full_state: units not placed', "cf[idx], wf[idx] = c, w", "wf[idx] = w"),
+    ('G10', 'arm_value: steps of D for E', "return tau_of(kappa) if arm in MC.ARM_READOUT else float(steps[arm])", "return tau_of(kappa) if arm in MC.ARM_READOUT else float(steps['D'])"),
+    ('G11', 'run_table: done from the first snapshot', "O[j], done[j], present[j] = outcomes(c, w, tc, theta, r_merge), r['done'][i], True", "O[j], done[j], present[j] = outcomes(c, w, tc, theta, r_merge), r['done'][0], True"),
+    ('G12', 'run_table: first snapshot', "_, w, c = r['snaps'][i]\n        O[j], done[j], present[j]", "_, w, c = r['snaps'][0]\n        O[j], done[j], present[j]"),
+    ('G13', 'check_freeze: changed files accepted', "    if bad:\n        raise RuntimeError('frozen files changed", "    if False:\n        raise RuntimeError('frozen files changed"),
+    ('G14', 'check_freeze: no record accepted', "    if fz is None:\n        raise RuntimeError('no freeze record", "    if fz is None:\n        return\n    if False:\n        raise RuntimeError('no freeze record"),
+    # ---- the development rules
+    ('R01', 'tune_stop: the smallest kappa among the ties', "cands = [(-KAPPAS[a], round(E[a, b], 9), -round(Fm[a, b], 9), -THETAS[b], a, b)", "cands = [(KAPPAS[a], round(E[a, b], 9), -round(Fm[a, b], 9), -THETAS[b], a, b)"),
+    ('R02', 'tune_stop: no standard-error band', "if E[a, b] <= E[a0, b0] + se]", "if E[a, b] <= E[a0, b0]]"),
+    ('R03', 'tune_stop: the smallest theta among the ties', "-round(Fm[a, b], 9), -THETAS[b], a, b)", "-round(Fm[a, b], 9), THETAS[b], a, b)"),
+    ('R04', 'tune_stop: the signed error', "E[a, b], Fm[a, b], SD[a, b] = col(O, 'err').mean(), col(O, 'f1').mean(), col(O, 'err').std(ddof=1)", "E[a, b], Fm[a, b], SD[a, b] = col(O, 'signed').mean(), col(O, 'f1').mean(), col(O, 'err').std(ddof=1)"),
+    ('R05', 'tune_values: ties to the later value', "cands = sorted((round(T[a, b], 9), vals[a], -thetas[b], a, b)", "cands = sorted((round(T[a, b], 9), -vals[a], -thetas[b], a, b)"),
+    ('R06', 'tune_values: ties to the smaller theta', "cands = sorted((round(T[a, b], 9), vals[a], -thetas[b], a, b)", "cands = sorted((round(T[a, b], 9), vals[a], thetas[b], a, b)"),
+    ('R07', 'tune_values: absent snapshots allowed', "ok = ok and bool(present.all())", "ok = ok and bool(present.any())"),
+    ('R08', 'bic_values: unreached snapshots eligible', "if i < 0 or r['done'][i] != 1.0 or not np.isfinite(r['loss'][i]):", "if i < 0 or not np.isfinite(r['loss'][i]):"),
+    ('R09', 'bic_values: no penalty', "b = 2.0 * r['loss'][i] + BIC_PAR * len(formed_units(c, w, theta)[1]) * np.log(NW * NW)", "b = 2.0 * r['loss'][i]"),
+    ('R10', 'bic_values: the loss not doubled', "b = 2.0 * r['loss'][i] + BIC_PAR", "b = r['loss'][i] + BIC_PAR"),
+    ('R11', 'freeze_record: the best case of D and E over the whole grid', "flow_values(arm, kappa) if arm in MC.ARM_READOUT else step_values(), THETAS)\n        best[arm]", "flow_values(arm, kappa) if arm in MC.ARM_READOUT else [200000.0], THETAS)\n        best[arm]"),
+    ('R13', 'freeze_record: half the budget', "steps, best = {'D': float(S_MAX), 'E': float(S_MAX)}, {}", "steps, best = {'D': float(S_MAX) / 2, 'E': float(S_MAX)}, {}"),
+    ('R14', 'equal_fit_values: strictly below the loss of the path', "if r['loss'][i] <= target:\n                break", "if r['loss'][i] < target:\n                break"),
+    ('R15', 'equal_fit_values: unreached snapshots eligible', "if i < 0 or r['done'][i] != 1.0:\n                continue\n            last = float(v)", "if i < 0:\n                continue\n            last = float(v)"),
+    ('R16', 'equal_fit_values: the first snapshot when the loss is never reached', "            last = float(v)\n            if r['loss'][i] <= target:", "            last = float(v) if last is None else last\n            if r['loss'][i] <= target:"),
+    ('R17', 'equal_fit_values: the loss of another stop', "target = float(raw['P|%s|k%g|loss' % (name, kappa)][0])", "target = float(raw['P|%s|k%g|loss' % (name, KAPPAS[0])][0])"),
+    ('R12', 'freeze_record: the stop from the dev windows only', "ts = tune_stop(raw, dev + devx)\n    kappa, theta = ts['kappa'], ts['theta']\n    steps", "ts = tune_stop(raw, dev)\n    kappa, theta = ts['kappa'], ts['theta']\n    steps"),
+    # ---- the predictions
+    ('V01', 'R1: the point estimate', "V[name] = dict(held=bool(lo > 0.0), m=m, lo=lo, hi=hi, n=n)", "V[name] = dict(held=bool(m > 0.0), m=m, lo=lo, hi=hi, n=n)"),
+    ('V02', 'R3: without the ratio', "V['R3'] = dict(held=bool(lo > 0.0 and kc >= fz['ratio_c'] * ka),", "V['R3'] = dict(held=bool(lo > 0.0),"),
+    ('V16', 'R3b: reads K_hat', "m, lo, hi, n = paired(T, 'C', 'A', 'n_awake')", "m, lo, hi, n = paired(T, 'C', 'A', 'k_hat')"),
+    ('V17', 'R3b: without the ratio', "V['R3b'] = dict(held=bool(lo > 0.0 and wc >= fz['ratio_c'] * wa),", "V['R3b'] = dict(held=bool(lo > 0.0),"),
+    ('V18', 'R3b: the means of K_hat', "wa, wc = col(T['A'][0], 'n_awake')[ok].mean() if ok.any() else np.nan, col(T['C'][0], 'n_awake')[ok].mean() if ok.any() else np.nan", "wa, wc = ka, kc"),
+    ('V03', 'R: R3 not required', "V['R'] = dict(held=bool(V['R1']['held'] and V['R2']['held'] and V['R3']['held']))", "V['R'] = dict(held=bool(V['R1']['held'] and V['R2']['held']))"),
+    ('V04', 'R: any of the three', "V['R'] = dict(held=bool(V['R1']['held'] and V['R2']['held'] and V['R3']['held']))", "V['R'] = dict(held=bool(V['R1']['held'] or V['R2']['held'] or V['R3']['held']))"),
+    ('V05', 'O1: the count error alone', "V['O1'] = dict(held=bool(lok > 0.0 and loe > 0.0),", "V['O1'] = dict(held=bool(loe > 0.0),"),
+    ('V06', 'O2: one-sided', "V['O2'] = dict(held=bool(lo >= -fz['margin_e'] and hi <= fz['margin_e']),", "V['O2'] = dict(held=bool(hi <= fz['margin_e']),"),
+    ('V07', 'O2b: two-sided', "V['O2b'] = dict(held=bool(hi <= fz['margin_e']),", "V['O2b'] = dict(held=bool(lo >= -fz['margin_e'] and hi <= fz['margin_e']),"),
+    ('V08', 'O: O2 not required', "V['O'] = dict(held=bool(V['O1']['held'] and V['O2']['held']))", "V['O'] = dict(held=bool(V['O1']['held']))"),
+    ('V09', 'path: strict share', "V[name] = dict(held=bool(n_win > 0 and k / n_win >= fz['share_path']),", "V[name] = dict(held=bool(n_win > 0 and k / n_win > 0.75),"),
+    ('V10', 'gate: against K_true itself', "V['gate'] = dict(held=bool(ef <= fz['gate'] * kt),", "V['gate'] = dict(held=bool(ef <= kt),"),
+    ('V11', 'paired: the difference reversed', "d = col(T[a][0], field)[ok] - col(T[b][0], field)[ok]", "d = col(T[b][0], field)[ok] - col(T[a][0], field)[ok]"),
+    ('V12', 'paired: all windows, absent runs included', "ok = T[a][2] & T[b][2]\n    d = col", "ok = np.ones(len(T[a][2]), bool)\n    d = col"),
+    ('V13', 'agree_flags: an unreached snapshot counts', "flag[j] = float(np.isfinite(v) and v == 1.0 and q[-1] == 1.0)", "flag[j] = float(np.isfinite(v) and v == 1.0)"),
+    ('V14', 'agree_flags: C1 for every field', "v = q[AGREE_FIELDS.index(field)]", "v = q[AGREE_FIELDS.index('c1')]"),
+    ('V15', 'primary_tables: F at the first kappa of the grid', "v = fz['kappa'] if arm == 'F' else arm_value(arm, fz['kappa'], fz['steps'])", "v = KAPPAS[0] if arm == 'F' else arm_value(arm, fz['kappa'], fz['steps'])"),
+    # ---- the report
+    ('X01', 'report: held and failed exchanged', "return 'HELD' if b else 'FAILED'", "return 'FAILED' if b else 'HELD'"),
+    ('X02', 'report: the path share printed from the signed reading', "held(V['path']['held']), V['path']['k'], V['path']['n'],", "held(V['path']['held']), V['pathS']['k'], V['path']['n'],"),
+    ('X03', 'fiv: bounds exchanged', "return '%s [%s, %s]' % (fnum(m, nd), fnum(lo, nd), fnum(hi, nd))", "return '%s [%s, %s]' % (fnum(m, nd), fnum(hi, nd), fnum(lo, nd))"),
+    ('X04', 'bundle_script: one process', "'    MC.work(\"wk/jobs.npz\", \"result.npz\", %d)\\n' % (", "'    MC.work(\"wk/jobs.npz\", \"result.npz\", 1)\\n' % ("),
+]

@@ -1,0 +1,22 @@
+# (id, what, old, new, k): single-point mutants of exp_gh_peano.py — round 108's revision (D's branch and bound in ball arithmetic,
+# part DB, exact contiguity, the band's last edge, |η_c| < R2) and the referee's unsound survivors Z18, Z19, Z21, Z22, Z30.
+M = [
+ ('X00', 'control', 'def part_DB():', 'def part_DB():', 0),
+ ('Z18', 'ball end: h dropped', " + R * R / 4 * (1 + e) ** 2 + (r * r - 1) / 2 - r.log()).upper()", " + R * R / 4 * (1 + e) ** 2).upper()", 0),
+ ('Z19', 'ball end: (1 + e)² dropped', " + R * R / 4 * (1 + e) ** 2 + (r * r - 1) / 2", " + R * R / 4 + (r * r - 1) / 2", 0),
+ ('Z21', 'poly: rigorous bound below 1e-12 accepted', "            if u is None or u < 0:", "            if u is None or u < 1e-12:", 0),
+ ('Z22', 'box: b inside the disc to 1.001', "(1 + arb(cert_b(R2)))).upper() < 1)", "(1 + arb(cert_b(R2)))).upper() < 1.001)", 0),
+ ('Z30', 'band: the ball end at Ra', "ball_end=cert_end_ball(Rb))", "ball_end=cert_end_ball(Ra))", 0),
+ ('E01', 'D ball: p at the upper end', "    p = min((R * R * (2 * f).cos()).lower() for R in (R1a, R2a) for f in (f1a, f2a))", "    p = min((R * R * (2 * f).cos()).upper() for R in (R1a, R2a) for f in (f1a, f2a))", 0),
+ ('E02', 'D ball: B at R1', "    B = (R2a * f1a.cos()).upper()", "    B = (R1a * f1a.cos()).upper()", 0),
+ ('E03', 'D ball: the kink dropped', "            cand.append(wk)", "            pass", 0),
+ ('E04', 'D ball: the second piece dropped', "    for qa, qb in ((p + 2 * B * B, -2 * B * B), (p, -2 * B)):", "    for qa, qb in ((p + 2 * B * B, -2 * B * B),):", 0),
+ ('E05', 'D ball: log R1 at R2', "- half - R1a.log() + log4).upper()", "- half - R2a.log() + log4).upper()", 0),
+ ('E06', 'D ball: the top edge at the float π/2', "    f2a = arb.pi() / 2 if f2 == math.pi / 2 else arb(f2)\n    p = min(", "    f2a = arb(f2)\n    p = min(", 0),
+ ('E07', 'dom_bb: a failed ball bound accepted', "            if not ball or (u is not None and u < 0):", "            if True:", 0),
+ ('E08', 'D ball: no final rounding up', "    return math.nextafter(float(best), math.inf)\n\n\ndef dom_bb(", "    return float(best)\n\n\ndef dom_bb(", 0),
+ ('E09', 'report: DB ignored', "        D = dict(D, dom=dict(D['dom'], bb=[dict(x) for x in DB]))", "        D = D", 0),
+ ('E10', 'v_lines: rigorous whatever D', "x.get('ball_worst', 0) < 0 and x['open'] == 0 for x in dm.get('bb', [])) and dm.get('bb') else", "True) else", 0),
+ ('E11', 'contiguity within 1e-12', "and b['R1'] <= R_v:         # round 108", "and b['R1'] <= R_v + 1e-12:  # round 108", 0),
+ ('E12', 'box: |η_c| < R2 unchecked', "    if not (abs(acb(ec.real, ec.imag)) < arb(R2)):", "    if False:", 0),
+]

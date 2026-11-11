@@ -1,0 +1,18 @@
+The rule of fresh_rule.md, items 1 to 5, on results/astro/fresh_survey.txt
+rule constants: {"status_max": 2, "nstar_min": 1, "fwhm_lo": 2.3, "fwhm_hi": 3.6, "windows_min": 100, "centre": [1023.5, 744.0], "min_patches": 2, "n_fresh": 2}
+universe: ngc5053, ngc5272, ngc5466, ngc5904, ngc6205, ngc6254, ngc6535, ngc6838, ngc6934, ngc6981, ngc7078 ; used already (excluded): ngc7089, ngc5024, ngc6341
+
+cluster  frame (run cam fld) seeing"   foot windows density    status  nstar   FWHM px | PSF    seeing   windows   | passes
+ngc6254  5391 5 185           1.268   0.50     286 0.06-0.15       2      5     2.810 | ok     ok       ok        | PASS
+ngc5272  4646 3 81            1.322   0.94     199 0.07-0.15       2      5     2.814 | ok     ok       ok        | PASS
+ngc5053  5390 5 168           1.204   0.95       0 -               0     29     2.560 | ok     ok       FAIL      | no
+ngc5466  4623 1 324           1.646   1.00      71 0.03-0.03       0     28     3.460 | ok     ok       FAIL      | no
+ngc5904  1458 4 700           1.135   1.00     581 0.06-0.15       3      0     2.451 | FAIL   ok       ok        | no
+ngc6205  3226 5 127           1.575   0.69      34 0.10-0.15       2      4     3.233 | ok     ok       FAIL      | no
+ngc6535  1463 3 61            1.558   1.00      87 0.03-0.04       3      0     3.534 | FAIL   ok       FAIL      | no
+ngc6838  6895 3 52            1.355   0.52      82 0.03-0.04       3      0     2.897 | FAIL   ok       FAIL      | no
+ngc6934  1738 1 29            1.027   0.79     452 0.03-0.15       2      1     2.181 | ok     FAIL     ok        | no
+ngc7078  1749 6 141           1.744   1.00     338 0.07-0.15       2      3     3.749 | ok     FAIL     ok        | no
+dropped by item 1 (the survey names no field box for them): ngc6981
+
+order of the passing clusters (item 5): ngc6254, ngc5272

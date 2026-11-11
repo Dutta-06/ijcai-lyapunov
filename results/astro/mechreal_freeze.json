@@ -1,0 +1,59 @@
+{
+ "best": {
+  "A": [
+   0.0008333333333333334,
+   1.0,
+   1.0
+  ],
+  "B": [
+   0.0008333333333333334,
+   0.7,
+   1.0
+  ],
+  "C": [
+   1.2500000000000001e-08,
+   0.5,
+   2.0
+  ],
+  "D": [
+   1000.0,
+   0.25,
+   4.25
+  ],
+  "E": [
+   100000.0,
+   1.0,
+   1.5
+  ]
+ },
+ "budget_s": 3600.0,
+ "eps": 1e-08,
+ "gate": 0.5,
+ "kappa": 30.0,
+ "margin_e": 1.0,
+ "n_dev": 8,
+ "n_devx": 16,
+ "r_match": 0.5,
+ "r_merge": 0.5,
+ "ratio_c": 2.0,
+ "sha256": {
+  "experiments/astro_common.py": "a25d698f21adfc0a15647477715bb64238c981900470310eabc8dbbd86e5d1da",
+  "experiments/astro_fresh.py": "7df29eba9da2cd3152a7dcca5ceda2d1620038af0e0006be2143eff36e275626",
+  "experiments/exp_astro_m2.py": "8acf3c302e48f7ef3e1c93c98af3c120f954e72a7fac5a0ece788a34a3b7de74",
+  "experiments/exp_mechreal.py": "354fa4f3e384f762c01b3465f6c669a330b873eca258bb09311e36c29587d074",
+  "experiments/mechreal_core.py": "9294957579c8ce676654b479b691e144c984c8f240b6eb1296fd8b7c01b8992f",
+  "results/astro/clusterdep_patches.json": "7c1d42a4598636e8a42e893ff798157da6ba8d7da62f62c22fee882499694509",
+  "results/astro/fresh_patches.json": "3d0bdfda66338c5dafc62ebd3d9c05832127dea07b9ccac5f76143d6c4cf26e7",
+  "results/astro/mechreal_plan.md": "5d6f1909762c10a3a68f454220952e70ddb609b419e6b24883467cfd6f7390db",
+  "src/core/imaging.py": "23ec17ea1e85f43161b4d6262d5555c37d9ddccfd6c3e13d880ba3f51f5e5be6",
+  "src/core/imaging_guard.py": "8f67aff1c8b9e7ff2d5102ebb132956fd9f4323f42b2a206b89b464e98242ae0"
+ },
+ "share_path": 0.6,
+ "steps": {
+  "D": 100000.0,
+  "E": 100000.0
+ },
+ "theta": 0.85,
+ "utc": "2026-11-10T20:02:31Z",
+ "z_lim": 40.0
+}

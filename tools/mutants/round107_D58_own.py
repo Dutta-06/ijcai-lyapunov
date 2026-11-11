@@ -1,0 +1,26 @@
+# (id, what, old, new, k): single-point mutants of exp_width_mismatch.py — round 107's new code (the distinct counts, D‴.61's one tier,
+# A6X's calibration: the later window, the last window against the proved rule's bias, the four-term fits, the verdict, the directed
+# rounding, the coverage count; the exponent range outward).
+M = [
+ ('Y00', 'control', 'D61_RSTAR_V = 0.9900 ', 'D61_RSTAR_V = 0.9900 ', 0),
+ ('Y01', 'dst_: never printed', "dst_ = lambda zs: f\" ({dist(zs)} distinct)\" if dist(zs) < len(zs) else ''", "dst_ = lambda zs: ''", 0),
+ ('Y02', 'dist: by name', "dist = lambda zs: len({(z[0]['r'], round(float(z[0]['v']), 12)) for z in zs})", "dist = lambda zs: len({(z[0]['r'], z[0]['name']) for z in zs})", 0),
+ ('Y03', 'the frame count: distinct by name', "dst = lambda xs: len({(x['r'], round(float(x['v']), 12)) for x in xs})", "dst = lambda xs: len({(x['r'], x['name']) for x in xs})", 0),
+ ('Y04', 'the verdict: no threshold', "bias in the same window: calibrated by it\" if cal <= 3 else", "bias in the same window: calibrated by it\" if cal <= 1e9 else", 0),
+ ('Y05', 'the verdict: threshold 3 → 30', "bias in the same window: calibrated by it\" if cal <= 3 else", "bias in the same window: calibrated by it\" if cal <= 30 else", 0),
+ ('Y06', 'the calibration: fit 1 only', "for z in nf for j in (0, 1)]", "for z in nf for j in (0,)]", 0),
+ ('Y07', 'the calibration: the later window', "abs(z['d'][z['iL']][j]) / max(max(abs(w['d'][w['iL']][j]) for w in pf), 1e-300)", "abs(z['d'][z['iL'] - 1][j]) / max(max(abs(w['d'][w['iL'] - 1][j]) for w in pf), 1e-300)", 0),
+ ('Y08', "proved: t(v) not checked", "fr = frame and x['rate'] < D61_RSTAR_V", "fr = frame", 0),
+ ('Y09', 'fit4: an e/K⁵ term', "[Fr(1) / Fr(K) ** e for e in (2, 3, 4)]", "[Fr(1) / Fr(K) ** e for e in (2, 3, 5)]", 0),
+ ('Y10', 'fit4: from the doubles', "h = [ratio_hp(y) for y in a['rows'][-1:] + x['rows']]", "h = [Fr(y['ratio']) for y in a['rows'][-1:] + x['rows']]", 0),
+ ('Y11', 'sig3: the lower end rounded up', "f\"{sig3(min(vs), False):.3g}–{sig3(max(vs), True):.3g}\")", "f\"{sig3(min(vs), True):.3g}–{sig3(max(vs), True):.3g}\")", 0),
+ ('Y12', 'sig3: two digits', "(math.floor(math.log10(abs(v))) - 2)", "(math.floor(math.log10(abs(v))) - 1)", 0),
+ ('Y13', 'nfast: every fast-branch rule', "nfast = sum(1 for y in A6 if y['arg'] == 2 and not abs(1 + 2 / y['r'] ** 2 - 2 / float(y['v'])) < 1 - 1e-12)", "nfast = sum(1 for y in A6 if y['arg'] == 2)", 0),
+ ('Y14', 'shrink: > 0', "shr(z, z['i0'], z['iL'], j) > 1 for z in rows_", "shr(z, z['i0'], z['iL'], j) > 0 for z in rows_", 0),
+ ('Y15', 'the exponent range rounded to nearest', "f\"{np.floor(min(vs) * 100) / 100:.2f} … {np.ceil(max(vs) * 100) / 100:.2f}\"", "f\"{min(vs):.2f} … {max(vs):.2f}\"", 0),
+ ('Y16', 'D61_STATUS: the old proviso', 'D61_STATUS = "computer-assisted, both of D‴.61\'s steps rigorous in ball arithmetic"', 'D61_STATUS = "modulo its branch and bound"', 0),
+ ('Y17', 'four-term max over every rule', "f\", the four-term fits within {up_e(max(abs(z['d4']) for z in nf))}", "f\", the four-term fits within {up_e(max(abs(z['d4']) for z in rows_))}", 0),
+ ('Y18', 'the verdict: max → min', "cal = max(q)", "cal = min(q)", 0),
+ ('Y19', 'the group label always "without a frame"', "nlab = \"without a frame\" if not any(z['frame'] for z in nf) else \"unproved\"", "nlab = \"without a frame\"", 0),
+ ('Y20', 'the rule label by proved, not by frame', "({'a frame' if z['frame'] else 'no frame'}\"", "({'a frame' if z['fr'] else 'no frame'}\"", 0),
+]

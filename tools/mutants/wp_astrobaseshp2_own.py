@@ -1,0 +1,92 @@
+"""Single-point mutants of experiments/exp_astro_baselines_hp2.py (round 2 catalogue generator), for tools/mutants.py (the kill criterion is the tests file alone; the harness's `--from-raw` step does not apply to this
+script and fails harmlessly):
+
+    venv/bin/python tools/mutants.py --exp exp_astro_baselines_hp2 --tests tests/test_exp_astro_baselines_hp2.py --raw results/astro/baselines_hp2_raw.npz --md results/astro/baselines_hp2_plan.md --out-env HP2_OUT \\
+        --extra results/astro/baseline_catalogs_hp.npz --extra results/astro/baselines_hp2_plan.md --extra results/astro/baselines_hp_plan.md --extra tests/test_astro_report.py --extra tests/test_exp_astro_hp.py --extra tests/test_exp_astro_baselines_hp.py \\
+        --spec tools/mutants/wp_astrobaseshp2_own.py --work <scratch dir> [--slot a --i0 0 --step 2]
+
+    (the run with the real packages: MUTANT_PYTHON=<the domain interpreter with pytest> python tools/mutants_py.py <the same arguments>)
+
+A tuple is (id, what, old, new[, k]): `old` replaced by `new` at its k-th occurrence in experiments/exp_astro_baselines_hp2.py.
+"""
+M = [
+    # ---- the registries
+    ('K01', 'the parents: a round-1 variant replaced', "PHOT2_PARENTS = ('phu_hp3_all_i6', 'phu_hp3_new_i30', 'phu_hp5_new_i3')", "PHOT2_PARENTS = ('phu_hp3_all_i6', 'phu_hp3_new_i30', 'phu_hp3_new_i3')"),
+    ('K02', 'the bounds: 1 and 3 px', "BOUNDS = (1, 2)", "BOUNDS = (1, 3)"),
+    ('K03', 'the bounds: only 1 px', "BOUNDS = (1, 2)", "BOUNDS = (1,)"),
+    ('K04', 'the bounds are integers', "bounds=float(b))", "bounds=b)"),
+    ('K05', 'the tag without the parent\'s tail', "tag='phu2_%s_b%d' % (parent[len('phu_'):], b)", "tag='phu2_%s_b%d' % (parent[len('phu'):], b)"),
+    ('K06', 'the minimum number of iterations of the longer passes', "'m': dict(miniter=8, maxiter=20, fewstars=20)", "'m': dict(miniter=8, maxiter=20, fewstars=60)"),
+    ('K07', 'the maximum number of iterations of the longer passes', "'m': dict(miniter=8, maxiter=20, fewstars=20)", "'m': dict(miniter=8, maxiter=10, fewstars=20)"),
+    ('K08', 'the first iterations of the longer passes', "'m': dict(miniter=8, maxiter=20, fewstars=20)", "'m': dict(miniter=4, maxiter=20, fewstars=20)"),
+    ('K09', 'the default passes: the package\'s fewstars', "'d': dict(miniter=4, maxiter=10, fewstars=60)", "'d': dict(miniter=4, maxiter=10, fewstars=100)"),
+    ('K10', 'the default passes: miniter', "'d': dict(miniter=4, maxiter=10, fewstars=60)", "'d': dict(miniter=5, maxiter=10, fewstars=60)"),
+    ('K11', 'the widths: 2 and 4 px', "for sb in (2, 3) for thr in (3, 5) for ps in ('d', 'm')]", "for sb in (2, 4) for thr in (3, 5) for ps in ('d', 'm')]"),
+    ('K12', 'the thresholds: 3 and 4', "for sb in (2, 3) for thr in (3, 5) for ps in ('d', 'm')]", "for sb in (2, 3) for thr in (3, 4) for ps in ('d', 'm')]"),
+    ('K13', 'the passes of a variant: the tag and the passes disagree', "kind='hp', sb=float(sb), thr=float(thr), passes=ps) for", "kind='hp', sb=float(sb), thr=float(thr), passes='d') for"),
+    ('K14', 'the width of a variant ignores the tag', "kind='hp', sb=float(sb), thr=float(thr), passes=ps) for", "kind='hp', sb=3.0, thr=float(thr), passes=ps) for"),
+    ('K15', 'the threshold of a variant ignores the tag', "kind='hp', sb=float(sb), thr=float(thr), passes=ps) for", "kind='hp', sb=float(sb), thr=5.0, passes=ps) for"),
+    ('K16', 'the families: the crowdsource tags in the photutils family', "FAMILIES2 = {'photutils': [d['tag'] for d in PHOT2], 'crowdsource': [d['tag'] for d in CS2]}", "FAMILIES2 = {'photutils': [d['tag'] for d in PHOT2] + [d['tag'] for d in CS2][:1], 'crowdsource': [d['tag'] for d in CS2]}"),
+    # ---- the photutils runner
+    ('P01', 'photutils: no bound', "n_threads=1,\n                                  xy_bounds=spec['bounds'])", "n_threads=1,\n                                  xy_bounds=None)"),
+    ('P02', 'photutils: a bound of 1 px for every variant', "xy_bounds=spec['bounds'])", "xy_bounds=1.0)"),
+    ('P03', 'photutils: the data not high-passed', "    data = G.highpass_frame(dn, sb)\n    stamp = G.highpass_stamp(psf51, sb)", "    data = dn - np.median(dn)\n    stamp = G.highpass_stamp(psf51, sb)"),
+    ('P04', 'photutils: the stamp not high-passed', "    data = G.highpass_frame(dn, sb)\n    stamp = G.highpass_stamp(psf51, sb)", "    data = G.highpass_frame(dn, sb)\n    stamp = psf51"),
+    ('P05', 'photutils: the errors are the weights', "    err = 1.0 / G.iss_weights(dn, gain, dark)\n    data", "    err = G.iss_weights(dn, gain, dark)\n    data"),
+    ('P06', 'photutils: the threshold of 3 noise sigmas', "threshold=G.NSIG * float(np.median(err))", "threshold=3.0 * float(np.median(err))"),
+    ('P07', 'photutils: the relaxed cuts never', "**(G.RELAXED if spec['relax'] else {}))", "**{})"),
+    ('P08', 'photutils: the relaxed cuts always', "**(G.RELAXED if spec['relax'] else {}))", "**G.RELAXED)"),
+    ('P09', 'photutils: the mode ignored', "mode=spec['mode'], aperture_radius=G.APER", "mode='new', aperture_radius=G.APER"),
+    ('P10', 'photutils: the depth ignored', "maxiters=spec['iters'], mode", "maxiters=3, mode"),
+    ('P11', 'photutils: never a grouper', "grouper = SourceGrouper(min_separation=spec['group']) if spec['group'] else None", "grouper = None"),
+    ('P12', 'photutils: always a grouper', "grouper = SourceGrouper(min_separation=spec['group']) if spec['group'] else None", "grouper = SourceGrouper(min_separation=G.GROUP)"),
+    ('P13', 'photutils: the fit shape ignored', "fit_shape=(G.FIT, G.FIT)", "fit_shape=(5, 5)"),
+    ('P14', 'photutils: the FWHM of the high-passed stamp', "fwhm=AB.psf_fwhm(psf51)", "fwhm=AB.psf_fwhm(stamp)"),
+    ('P15', 'photutils: a missing result is an error', "    if res is None:\n        return dict(x=np.zeros(0), y=np.zeros(0), flux=np.zeros(0)), secs\n", ""),
+    ('P16', 'photutils: zero flux kept', "good = np.isfinite(res['flux_fit']) & (res['flux_fit'] > 0)", "good = np.isfinite(res['flux_fit']) & (res['flux_fit'] >= 0)"),
+    ('P17', 'photutils: negative flux kept', "good = np.isfinite(res['flux_fit']) & (res['flux_fit'] > 0)", "good = np.isfinite(res['flux_fit'])"),
+    ('P18', 'photutils: x and y exchanged', "return dict(x=np.asarray(res['x_fit'][good], float), y=np.asarray(res['y_fit'][good], float),", "return dict(x=np.asarray(res['y_fit'][good], float), y=np.asarray(res['x_fit'][good], float),"),
+    ('P19', 'photutils: the origin of the model', "origin=(25, 25), oversampling=1)", "origin=(25, 24), oversampling=1)"),
+    ('P20', 'photutils: the aperture radius', "aperture_radius=G.APER", "aperture_radius=2.0"),
+    # ---- the crowdsource runner
+    ('C01', 'crowdsource: the threshold not passed', "refit_psf=False, verbose=False, threshold=thr)", "refit_psf=False, verbose=False)"),
+    ('C02', 'crowdsource: the fewstars of the other passes', "fewstars=p['fewstars'], miniter", "fewstars=60, miniter"),
+    ('C03', 'crowdsource: the miniter of the other passes', "miniter=p['miniter'], maxiter", "miniter=4, maxiter"),
+    ('C04', 'crowdsource: the maxiter of the other passes', "maxiter=p['maxiter'],\n", "maxiter=10,\n"),
+    ('C05', 'crowdsource: the passes taken from the default always', "p = PASSES[passes]", "p = PASSES['d']"),
+    ('C06', 'crowdsource: a 32-bit flag image', "flag = np.zeros(im.shape, dtype=np.int64)", "flag = np.zeros(im.shape, dtype=np.int32)"),
+    ('C07', 'crowdsource: 32-bit weights', "weights=np.asarray(weights, dtype=np.float64)", "weights=np.asarray(weights, dtype=np.float32)"),
+    ('C08', 'crowdsource: x and y not exchanged', "return dict(x=np.asarray(cat['y'], float), y=np.asarray(cat['x'], float),", "return dict(x=np.asarray(cat['x'], float), y=np.asarray(cat['y'], float),"),
+    ('C09', 'crowdsource: tiles', "ntilex=1, ntiley=1,", "ntilex=2, ntiley=1,"),
+    ('C10', 'crowdsource: the PSF refit', "refit_psf=False,", "refit_psf=True,"),
+    ('C11', 'crowdsource: the cap on the stars', "maxstars=10000000,", "maxstars=1000,"),
+    ('C12', 'crowdsource: the weights are the deviations', "    sw = G.iss_weights(dn, gain, dark)\n    base", "    sw = 1.0 / G.iss_weights(dn, gain, dark)\n    base"),
+    ('C13', 'crowdsource: the flux convention not imposed', "psfmod.SimplePSF(G.highpass_stamp(base / s19, spec['sb']), normalize=0)", "psfmod.SimplePSF(G.highpass_stamp(base, spec['sb']), normalize=0)"),
+    ('C14', 'crowdsource: the central 21 x 21 pixels for the convention', "s19 = float(psfmod.central_stamp(base, 19).sum())", "s19 = float(psfmod.central_stamp(base, 21).sum())"),
+    ('C15', 'crowdsource: the stamp normalised by the package', "psfmod.SimplePSF(G.highpass_stamp(base / s19, spec['sb']), normalize=0)", "psfmod.SimplePSF(G.highpass_stamp(base / s19, spec['sb']))"),
+    ('C16', 'crowdsource: the stamp high-passed at 3 px', "psfmod.SimplePSF(G.highpass_stamp(base / s19, spec['sb']), normalize=0)", "psfmod.SimplePSF(G.highpass_stamp(base / s19, 3.0), normalize=0)"),
+    ('C17', 'crowdsource: the image high-passed at 3 px', "cat = cs_fit2(G.highpass_frame(dn, spec['sb']), psf, sw, spec['thr'], spec['passes'])", "cat = cs_fit2(G.highpass_frame(dn, 3.0), psf, sw, spec['thr'], spec['passes'])"),
+    ('C18', 'crowdsource: the image not high-passed', "cat = cs_fit2(G.highpass_frame(dn, spec['sb']), psf, sw, spec['thr'], spec['passes'])", "cat = cs_fit2(dn - np.median(dn), psf, sw, spec['thr'], spec['passes'])"),
+    ('C19', 'crowdsource: the threshold of the variant ignored', "cat = cs_fit2(G.highpass_frame(dn, spec['sb']), psf, sw, spec['thr'], spec['passes'])", "cat = cs_fit2(G.highpass_frame(dn, spec['sb']), psf, sw, 5.0, spec['passes'])"),
+    ('C20', 'crowdsource: the passes of the variant ignored', "cat = cs_fit2(G.highpass_frame(dn, spec['sb']), psf, sw, spec['thr'], spec['passes'])", "cat = cs_fit2(G.highpass_frame(dn, spec['sb']), psf, sw, spec['thr'], 'd')"),
+    # ---- the dispatch and the command line
+    ('D01', 'run_variant2: a crowdsource tag run as photutils', "    for spec in CS2:\n        if spec['tag'] == tag:\n            return run_crowdsource_hp2(a['dn'], a['psf51'], a['gain'], a['dark'], spec)", "    for spec in CS2:\n        if spec['tag'] == tag:\n            return run_crowdsource_hp2(a['dn'], a['psf51'], a['dark'], a['gain'], spec)"),
+    ('D02', 'run_variant2: a round-1 tag accepted', "    raise KeyError(tag)", "    return run_variant_round1(tag, a)"),
+    ('D03', 'test stage: both selections run as the first', "    tags = [sel['photutils'], sel['crowdsource']]\n    return [t for i, t in enumerate(tags) if t not in tags[:i]]", "    tags = [sel['photutils'], sel['photutils']]\n    return [t for i, t in enumerate(tags) if t not in tags[:i]]"),
+    ('D04', 'test stage: the repeats not removed', "    return [t for i, t in enumerate(tags) if t not in tags[:i]]", "    return tags"),
+    ('D05', 'test stage: the selection not verified', "    sel = H2.verify_selection2(raw2)", "    sel = dict(photutils=str(raw2['SEL|photutils'][0]), crowdsource=str(raw2['SEL|crowdsource'][0]))"),
+    ('D06', 'carry: the arrays of another variant', "    k = '%s|%s|' % (G.patch_key(x0, y0), tag)\n    found", "    k = '%s|%s|' % (G.patch_key(x0, y0), tag[:-1])\n    found"),
+    ('D07', 'carry: nothing found is not an error', "    if not found:\n        raise SystemExit('the round-1 catalogue file has no arrays %s*' % k)\n", ""),
+    ('D08', 'main: a round-1 variant is run again, not carried', "            if tag not in all_tags:                                            # a selected round-1 variant: carried, not run again", "            if False:                                            # a selected round-1 variant: carried, not run again"),
+    ('D09', 'main: the repeat frames without the flag', "if name in G.REPEAT_SETS and not (A_.flag and os.path.exists(A_.flag)):", "if False:"),
+    ('D10', 'main: the flag need not exist', "not (A_.flag and os.path.exists(A_.flag))", "not A_.flag"),
+    ('D11', 'main: a catalogue file overwritten', "if os.path.exists(A_.out):\n        raise SystemExit", "if False:\n        raise SystemExit"),
+    ('D12', 'main: the origins not checked', "print('%d patch origins, all distinct' % G.check_origins(), flush=True)", "print('not checked', flush=True)"),
+    ('D13', 'main: the dev stage runs the round-1 patches', "G.SETS['dev'][1]", "G.SETS['m2'][1]"),
+    ('D14', 'main: an unknown variant accepted', "        if unknown:\n            raise SystemExit('unknown variants: %s' % unknown)", "        if unknown:\n            pass"),
+    ('D15', 'main: the test-stage default sets', "names = A_.sets or ['m2', 'm53', 'm92']", "names = A_.sets or ['m2']"),
+    ('D16', 'main: the patch restriction ignored', "                plist = [p for p in plist if tuple(p) in want]", "                pass"),
+    ('D17', 'main: an unknown set accepted', "if name not in G.TEST_SETS:", "if False:"),
+    ('D18', 'main: the raw required', "        if not A_.raw:\n            raise SystemExit('--stage test needs --raw (the file with the frozen selection)')", "        pass"),
+    ('D19', 'main: the secs of a run not stored', "            G.store(out, x0, y0, tag, cat, secs)", "            G.store(out, x0, y0, tag, cat, 0.0)"),
+]

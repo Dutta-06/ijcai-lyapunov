@@ -1,0 +1,27 @@
+# (id, what, old, new, k): single-point mutants of exp_gh_peano.py — round 104's revision of part V (the tight gradient bound, the
+# ball-arithmetic recheck, the exact ratio) and the referee's unsound survivors (Y02, Y03, Y05, Y07, Y16, Y18, Y21, Y22, Y24, Y31, W19),
+# adapted to the revised code.
+M = [
+ ('X00', 'control', 'CERT_BALL_PREC = 120 ', 'CERT_BALL_PREC = 120 ', 0),
+ ('Y02', 'rB with |η_c| for R2', "    rB = R2 / 2 * opz", "    rB = abs(eta_c) / 2 * opz", 0),
+ ('Y03', 'rmax without + ℓ|η|/2', "    rmax = abs(sm) + Rc / 2 * l\n", "    rmax = abs(sm)\n", 0),
+ ('Y05', 'W without ℓ²', "    W = abs(1 - m * m) - l * (2 * abs(m) + l)\n", "    W = abs(1 - m * m) - l * 2 * abs(m)\n", 0),
+ ('Y07', "h′ halved", "    hp = lambda r: (r - 1 / r) if r > 1 else 0.0", "    hp = lambda r: (r - 1 / r) / 2 if r > 1 else 0.0", 0),
+ ('Y16', "b from the box's least radius", "    pts = cert_flow(ec, cert_b(R2))", "    pts = cert_flow(ec, cert_b(R1))", 0),
+ ('Y18', 'the end checked at 2ε0', "    if pts is None or abs(1 - pts[-1]) > CERT_EPS0:", "    if pts is None or abs(1 - pts[-1]) > 2 * CERT_EPS0:", 0),
+ ('Y21', 'a gap at each split in |η|', "            stack += [(R1, m, f1, f2, dep + 1), (m, R2, f1, f2, dep + 1)]", "            stack += [(R1, m, f1, f2, dep + 1), (m + 1e-9, R2, f1, f2, dep + 1)]", 0),
+ ('Y22', 'a gap at each split in the angle', "            stack += [(R1, R2, f1, m, dep + 1), (R1, R2, m, f2, dep + 1)]", "            stack += [(R1, R2, f1, m, dep + 1), (R1, R2, m + 1e-9, f2, dep + 1)]", 0),
+ ('Y24', 'v_lines: contiguous within 10⁻²', "b['R1'] <= R_v + 1e-12:", "b['R1'] <= R_v + 1e-2:", 0),
+ ('Y31', 'the first band from 1.893', "CERT_BANDS = ((1.8927, 1.98, 4, 32)", "CERT_BANDS = ((1.893, 1.98, 4, 32)", 0),
+ ('W19', 'v_lines: r* rounded', "    rv = math.floor(r_star(R_v) * 1e4) / 1e4", "    rv = round(r_star(R_v), 4)", 0),
+ ('B01', 'ball: C dropped', "            C = up(h - (al * al if al > 0 else arb(0)))", "            C = arb(0)", 0),
+ ('B02', 'ball: ℓ at its lower end', "    m, l = (P + Q) / 2, up(abs(Q - P) / 2)", "    m, l = (P + Q) / 2, (abs(Q - P) / 2).lower()", 0),
+ ('B03', 'ball: the top edge at the float π/2', "arb.pi() / 2 if f2 == math.pi / 2 else arb(f2)", "arb(f2)", 0),
+ ('B04', 'poly: a failed ball bound accepted', "            if u is None or u < 0:", "            if True:", 0),
+ ('B05', 'box: b inside the disc unchecked', "    if not ((arb(R2) / 2 * (1 + arb(cert_b(R2)))).upper() < 1) or not (", "    if not (", 0),
+ ('B06', 'v_lines: the ball end unchecked', "all(b.get('ball_worst', 0) < 0 and b.get('ball_end', 0) < 0 for b in bs)", "all(b.get('ball_worst', 0) < 0 for b in bs)", 0),
+ ('B07', 'ratio in floating point', "    q = Fraction(int(round(r * 10 ** 4)), 10 ** 4)", "    q = r", 0),
+ ('B08', 'L_η: h′ halved', "    Leta = R2 * Zmax ** 2 / 2 + opz / 2 * hp(rB)\n", "    Leta = R2 * Zmax ** 2 / 2 + opz / 4 * hp(rB)\n", 0),
+ ('B09', 'part V without the ball', "bands=[cert_band(*b, ball=True) for b in CERT_BANDS]", "bands=[cert_band(*b) for b in CERT_BANDS]", 0),
+ ('B10', 'ball: the short δ ignored', "    dd = db if short else arb(d)", "    dd = arb(d)", 0),
+]

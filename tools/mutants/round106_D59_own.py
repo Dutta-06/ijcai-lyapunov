@@ -1,0 +1,20 @@
+# (id, what, old, new, k): single-point mutants of exp_moving_width.py — round 106's new code (the signed exits and the offset start,
+# the 50-digit zero of ċ, the bottleneck mirror distance and the odd part, the lemma's sign edges, the clauses from the data).
+M = [
+ ('X00', 'control', 'def a2_ulps_exact(ratio, w, sig, kmax=20, prec=50):', 'def a2_ulps_exact(ratio, w, sig, kmax=20, prec=50):', 0),
+ ('Z01', 'exit: direction inverted', "int(np.sign(sol.y_events[0][0][1] - c0))", "int(np.sign(c0 - sol.y_events[0][0][1]))", 0),
+ ('Z02', 'exits: the offset start above', "off=-kz * u / ss", "off=kz * u / ss", 0),
+ ('Z03', 'exits: RK45 for Radau', "for m in ('Radau', 'BDF')]", "for m in ('RK45', 'BDF')]", 0),
+ ('Z04', 'exits: the offset start not checked', " + [r['symoff'] or (0.0, -1)]", "", 0),
+ ('Z05', 'exact zero: the residual without f*', "tot += (fk - W * ph) * ph * (x - c)", "tot += (- W * ph) * ph * (x - c)", 0),
+ ('Z06', 'exact zero: 16 digits', "kmax=20, prec=50):", "kmax=20, prec=16):", 0),
+ ('Z07', 'mirror: the nearest image', "(maximum_bipartite_matching(csr_matrix((D <= vals[m]).astype(np.int8)), perm_type='column') >= 0).all()", "(D <= vals[m]).any(axis=1).all()", 0),
+ ('Z08', 'mirror: without the σ difference', "np.abs(np.abs(th[:, None, 1]) - np.abs(th[None, :, 1]))", "0 * th[:, None, 1] * th[None, :, 1]", 0),
+ ('Z09', 'odd part: the even part', "np.abs(f(c0 + x) - f(c0 - x))", "np.abs(f(c0 + x) + f(c0 - x))", 0),
+ ('Z10', 'odd part on the grid for the samples', "xs=XS[XS >= 0]", "xs=None", 0),
+ ('Z11', 'lemma edges: the total by the ±1 term', "out[lab] = (edge(lambda r: r[3] > 0)", "out[lab] = (edge(lambda r: r[2] > 0)", 0),
+ ('Z12', 'lemma edges: unsorted', "rows = sorted(sc[lab])", "rows = list(sc[lab])", 0),
+ ('Z13', 'exact-start clause unconditional', "if mx < 1e-12 else", "if True else", 0),
+ ('Z14', "held line: every run's last steps", "r.get('steps_to', 0) < 10", "r.get('steps_to', 0) < 0", 0),
+ ('Z15', 'XS symmetry: the difference', "np.abs(XS + XS[::-1])", "np.abs(XS - XS[::-1])", 0),
+]
